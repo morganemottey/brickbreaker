@@ -19,7 +19,6 @@ class Pad extends Component {
         xLeft : this.state.xLeft -10 //je déplace mon pad de -10%
      })}
     render() {
-
         return (
             <div
             style={{
@@ -62,6 +61,7 @@ class Pad extends Component {
                     }}
                 >
                 </div>
+              
             </div>
 
 
