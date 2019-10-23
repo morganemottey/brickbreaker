@@ -5,66 +5,43 @@ class Pad extends Component {
     constructor(props){
         super(props);
         this.state = {
-            xLeft: 47,
+            xLeft:'',
         };
     }
-    positionRight = () => {
-        if (this.state.xLeft <+ 80)
-        this.setState({
-        xLeft : this.state.xLeft +10 // je déplace mon pad de +10%
-    })}
-    positionLeft = () => {
-        if (this.state.xLeft >= 10) //penser à changer screen width lorsqu'on aura choisi la taille de la fenêtre du jeu
-        this.setState({
-        xLeft : this.state.xLeft -10 //je déplace mon pad de -10%
-     })}
+
+    componentDidMount(){
+        document.addEventListener('touchstart', event => {
+            this.setState({
+                xLeft: event.touches[0].pageX
+            })
+        }, false);
+        document.addEventListener('touchmove', event => {
+            //penser à changer screen width lorsqu'on aura choisi la taille de la fenêtre du jeu 
+            //if à revoir ..
+            if ((this.state.xLeft >= 0) && (this.state.xLeft <= 400)) 
+            this.setState({
+                xLeft: event.touches[0].pageX
+            })
+        }, false);
+    }
+    
     render() {
         return (
             <div
             style={{
-                width:"400px",
+                width:"100%",
                 height:"500px",
                 margin: "0 auto",
                 position:"relative",
-                display:"flex",
             }}
             >
-                <div className="left"
-                    style= {{
-                        backgroundColor: "#70C3B3",
-                        width:"50%",
-                        height:"500px",
-                    }}
-                    onClick={this.positionLeft}
-                >
-                </div>
-                <div className="right"
-                    style={{
-                        backgroundColor:"#1E8873",
-                        width:"50%",
-                        height:"500px",
-                    }}
-                    onClick={this.positionRight}
-                >
-                </div>
                 <div className="TabBarre"
                     style={{
-                        width:"30px",
-                        height:"5px",
-                        backgroundColor: "black",
-                        position: "absolute",
-                        left:`${this.state.xLeft}%`,
-                        bottom:"50px",
-                        transitionDuration: "1s",
-                        transitionProperty: "left",
-
+                        left:`${this.state.xLeft}px`
                     }}
                 >
                 </div>
-              
             </div>
-
-
         );
     }
 }
