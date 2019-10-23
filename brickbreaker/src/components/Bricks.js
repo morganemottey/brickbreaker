@@ -6,22 +6,17 @@ class Rectangle extends Component {
       this.state = {};
     }
 
-    brickForm = () => {
-      const brickSize = {
-      width: `45px`,
-      height: `15px`,
-      backgroundColor:'Tan',
-      border: 'solid',
-      margin: '5px 0px 0px 20px'
-    }
-    return brickSize;
-   }
-
-
     render() { 
+      const {left, top} = this.props
+      const brickSize = {
+         width:`50px`,
+         height:`10px`,
+         backgroundColor:'Tan',
+         position:'fixed',
+      }  
       return (
         <div>
-          <div style={this.brickForm()}></div>
+          <div style={{...brickSize ,top:top, left:left}}></div>
         </div>
       );
     }

@@ -2,35 +2,29 @@ import React, { Component } from 'react';
 import Rectangle from './Rectangle';
 
 
-
 class Line extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-
     }
 
-    bricksLine = () => {
-        const bricksLine = 5;
-       
+    bricksMatrix = () => {
         const bricks = [];
-            for (let i = 0; i < bricksLine; i++) {
-                bricks[i] = <Rectangle key={`bricks-${i}`} />
+            for (let i = 0; i < 6; i++) {     
+                for (let j = 0; j < 6; j++){
+                   bricks.push (<Rectangle top={i*20} left={j*60}/>) 
+                } 
             }
         return bricks;
     };
 
-    render() {
+    render() {    
         return (
-            <div>
-                <div style={{display: 'flex'}}>{this.bricksLine()}</div>
-                <div style={{display: 'flex'}}>{this.bricksLine()}</div>
-                <div style={{display: 'flex'}}>{this.bricksLine()}</div>
-                <div style={{display: 'flex'}}>{this.bricksLine()}</div>
+            <div>  
+                <div>{this.bricksMatrix()}</div>
             </div>
         );
     }
 }
-
 
 export default Line;
