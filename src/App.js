@@ -1,13 +1,11 @@
 import React from 'react';
+import Game from './components/Game';
 import './App.css';
-import Pad from './components/Pad';
-
 
 function App() {
   return (
     <div className="App">
-     {/* Component for PAD.js */}
-     <Pad/>
+      <Game />
     </div>
   );
 }
