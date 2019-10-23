@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Rectangle from './Rectangle';
+import Bricks from './Bricks';
 
 
 class Line extends Component {
@@ -12,7 +12,7 @@ class Line extends Component {
         const bricks = [];
             for (let i = 0; i < 6; i++) {     
                 for (let j = 0; j < 6; j++){
-                   bricks.push (<Rectangle top={i*20} left={j*60}/>) 
+                   bricks.push (<Bricks top={i*20} left={j*60}/>) 
                 } 
             }
         return bricks;

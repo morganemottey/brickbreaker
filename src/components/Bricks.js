@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Rectangle extends Component {
+class Bricks extends Component {
     constructor(props) {
       super(props);
       this.state = {};
@@ -23,4 +23,4 @@ class Rectangle extends Component {
   }
 
 
-export default Rectangle;
+export default Bricks;
