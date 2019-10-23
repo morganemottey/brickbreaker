@@ -32,6 +32,7 @@ MoovingX = () => {
       this.setState({pointLeft : this.state.pointLeft-=this.state.xSpeed})
   }
   
+
   if (this.state.pointLeft > 355 || this.state.pointLeft < 0
   ){
       this.setState({goRight : !this.state.goRight})
@@ -47,6 +48,7 @@ MoovingY = () => {
       this.setState({pointTop : this.state.pointTop-=this.state.ySpeed})
   }
   
+
   if (this.state.pointTop > 647 || this.state.pointTop < 0
   ){
       this.setState({goDown : !this.state.goDown})
