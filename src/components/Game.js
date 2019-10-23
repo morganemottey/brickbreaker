@@ -34,7 +34,7 @@ MoovingX = () => {
   
 
   if (this.state.pointLeft > 355 || this.state.pointLeft < 0
-  ){
+    ){
       this.setState({goRight : !this.state.goRight})
   }
 
@@ -67,9 +67,6 @@ componentDidMount(){
 
     return (
       <div className="Game">
-        <span className='brickTest'></span>
-        <span className='brickTest1'></span>
-        <span className='brickTest2'></span> 
         <Line />
         <Point left={pointLeft} top={pointTop}/>
       </div>

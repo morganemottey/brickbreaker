@@ -11,8 +11,8 @@ class Line extends Component {
     bricksMatrix = () => {
         const bricks = [];
             for (let i = 0; i < 6; i++) {     
-                for (let j = 0; j < 6; j++){
-                   bricks.push (<Bricks top={i*20} left={j*60}/>) 
+                for (let j = 0; j < 5; j++){
+                   bricks.push (<Bricks top={i*20} left={j*75}/>) 
                 } 
             }
         return bricks;
@@ -20,8 +20,8 @@ class Line extends Component {
 
     render() {    
         return (
-            <div>  
-                <div>{this.bricksMatrix()}</div>
+            <div style= {{position:"relative", marginTop: "70px", marginLeft: '5px' }}>  
+                {this.bricksMatrix()}
             </div>
         );
     }
