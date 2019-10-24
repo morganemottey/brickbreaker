@@ -1,6 +1,7 @@
 import React from 'react';
 import Game from './components/Game';
 import './App.css';
+import HomePage from './HomePage';
 
 function App() {
   return (
