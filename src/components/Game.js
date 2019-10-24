@@ -18,13 +18,24 @@ class Game extends Component {
   }
 
 BriqueX = (left, top) => {
-  return (this.state.pointTop+19>top && this.state.pointTop<top+39 && this.state.pointLeft+20>left && this.state.pointLeft<left+90)
+  return (this.state.pointTop+19>top && this.state.pointTop<top+9 && this.state.pointLeft+20>left && this.state.pointLeft<left+65)
 }
 
 BriqueY = (left, top) => {
-  return (this.state.pointTop+20>top && this.state.pointTop<top+40 && this.state.pointLeft+19>left && this.state.pointLeft<left+89)
+  return (this.state.pointTop+20>top && this.state.pointTop<top+10 && this.state.pointLeft+19>left && this.state.pointLeft<left+64)
 }
 
+bricksPositionX = () => {
+  return this.state.brickWall.map( item => {
+    return this.BriqueX(item.left, item.top)
+  })
+}
+
+bricksPositionY = () => {
+  return this.state.brickWall.map( item => {
+    return this.BriqueY(item.left, item.top)
+  })
+}
 
 MoovingX = () => {
   if (this.state.goRight){
@@ -78,10 +89,11 @@ getBrickWall = () => {
 };
 
   render(){
+    console.log(this.bricksPositionY())
     const {pointLeft, pointTop} = this.state
     return (
       <div className="Game">
-        <div style={{position: 'relative', border: '1px red solid', height:'600px', width:'375', top:'67px'}}>
+        <div style={{position: 'relative', height:'600px', width:'375', top:'67px'}}>
           {this.state.brickWall.map( item => {
             return(
               <Bricks 
