@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Game.css';
 import Point from './Point';
 import Bricks from './Bricks';
+import Pad from './Pad';
 
 class Game extends Component {
   constructor(props) {
@@ -112,6 +113,7 @@ class Game extends Component {
             ); 
           })}
         <Point left={pointLeft} top={pointTop}/>
+        <Pad/>
         </div>
       </div>
     );
