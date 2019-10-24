@@ -30,7 +30,7 @@ class Pad extends Component {
             <div
             style={{
                 width:"100%",
-                height:"500px",
+                height:"600px",
                 margin: "0 auto",
                 position:"relative",
             }}
