@@ -26,15 +26,25 @@ BriqueY = (left, top) => {
 }
 
 bricksPositionX = () => {
-  return this.state.brickWall.map( item => {
-    return this.BriqueX(item.left, item.top)
-  })
+  return (this.state.brickWall
+    .filter( item => {
+      return this.BriqueX(item.left, item.top)===true
+    })
+    .map(item=>{
+      return this.BriqueX(item.left, item.top)
+    }))
+    .join('||')
 }
 
 bricksPositionY = () => {
-  return this.state.brickWall.map( item => {
-    return this.BriqueY(item.left, item.top)
-  })
+  return (this.state.brickWall
+    .filter( item => {
+      return this.BriqueY(item.left, item.top)===true
+    })
+    .map( item => {
+      return this.BriqueY(item.left, item.top)
+    }))
+    .join('||')
 }
 
 MoovingX = () => {
@@ -47,7 +57,7 @@ MoovingX = () => {
   }
   
 
-  if (this.state.pointLeft > 355 || this.state.pointLeft < 0 
+  if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.bricksPositionX()
     ){
       this.setState({goRight : !this.state.goRight})
   }
@@ -65,7 +75,7 @@ MoovingY = () => {
   }
   
 
-  if (this.state.pointTop > 587 || this.state.pointTop < 0 
+  if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.bricksPositionY()
   ){
       this.setState({goDown : !this.state.goDown})
   }
@@ -73,23 +83,22 @@ MoovingY = () => {
   setTimeout(this.MoovingY, 1) 
 }
 
-componentDidMount(){
-  this.MoovingX()
-  this.MoovingY()
-}
+  getBrickWall = () => {
+    const brick = [];
+        for (let i = 0; i < 6; i++) {     
+            for (let j = 0; j < 5; j++){
+              brick.push ({top:i*20, left:j*75})
+            } 
+        }
+    return brick;
+  };
 
-getBrickWall = () => {
-  const brick = [];
-      for (let i = 0; i < 6; i++) {     
-          for (let j = 0; j < 5; j++){
-             brick.push ({top:i*20, left:j*75})
-          } 
-      }
-  return brick;
-};
+  componentDidMount(){
+    this.MoovingX()
+    this.MoovingY()
+  }
 
   render(){
-    console.log(this.bricksPositionY())
     const {pointLeft, pointTop} = this.state
     return (
       <div className="Game">
