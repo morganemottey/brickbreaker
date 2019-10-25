@@ -88,7 +88,7 @@ class Game extends Component {
     const brick = [];
         for (let i = 0; i < 6; i++) {     
             for (let j = 0; j < 5; j++){
-              brick.push ({top:i*20, left:j*75})
+              brick.push ({top:i*25, left:j*77})
             } 
         }
     return brick;
