@@ -1,8 +1,8 @@
 /* Style for Pad */
 
 .TabBarre {
-    width: 30px;
-    height: 5px;
+    width: 60px;
+    height: 10px;
     background-color: #70C3B3;
     position: absolute;
     bottom: 50px;   
