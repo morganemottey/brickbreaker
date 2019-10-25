@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/lyon-0919-react-p2-brick-breaker/static/css/main.0f9b6fac.chunk.css",
+    "main.js": "/lyon-0919-react-p2-brick-breaker/static/js/main.8b31c8fd.chunk.js",
+    "main.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/main.8b31c8fd.chunk.js.map",
+    "runtime-main.js": "/lyon-0919-react-p2-brick-breaker/static/js/runtime-main.a79b24b3.js",
+    "runtime-main.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/runtime-main.a79b24b3.js.map",
+    "static/js/2.9ca8f9b6.chunk.js": "/lyon-0919-react-p2-brick-breaker/static/js/2.9ca8f9b6.chunk.js",
+    "static/js/2.9ca8f9b6.chunk.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/2.9ca8f9b6.chunk.js.map",
+    "index.html": "/lyon-0919-react-p2-brick-breaker/index.html",
+    "precache-manifest.4d2f24fdc37901b61bb5db77b17fe44e.js": "/lyon-0919-react-p2-brick-breaker/precache-manifest.4d2f24fdc37901b61bb5db77b17fe44e.js",
+    "service-worker.js": "/lyon-0919-react-p2-brick-breaker/service-worker.js",
+    "static/css/main.0f9b6fac.chunk.css.map": "/lyon-0919-react-p2-brick-breaker/static/css/main.0f9b6fac.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a79b24b3.js",
+    "static/js/2.9ca8f9b6.chunk.js",
+    "static/css/main.0f9b6fac.chunk.css",
+    "static/js/main.8b31c8fd.chunk.js"
+  ]
+}
