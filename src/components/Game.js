@@ -18,6 +18,16 @@ class Game extends Component {
     }
   }
 
+  deleteBricks=()=>{
+    this.setState({brickWall:this.state.brickWall
+      .filter( item => {
+        return !(this.state.pointTop+20>item.top && this.state.pointTop<item.top+10 && this.state.pointLeft+20>item.left && this.state.pointLeft<item.left+65)
+      })
+      .map( item => {
+        return item
+      })})
+  }
+
   generateIfCollideX = (left, top) => {
     return (this.state.pointTop+19>top && this.state.pointTop<top+9 && this.state.pointLeft+20>left && this.state.pointLeft<left+65)
   }
@@ -28,24 +38,16 @@ class Game extends Component {
 
   checkIfCollideX = () => {
     return (this.state.brickWall
-      .filter( item => {
+      .find( item => {
         return this.generateIfCollideX(item.left, item.top)===true
-      })
-      .map(item=>{
-        return this.generateIfCollideX(item.left, item.top)
       }))
-      .join('||')
   }
 
   checkIfCollideY = () => {
     return (this.state.brickWall
-      .filter( item => {
+      .find( item => {
         return this.generateIfCollideY(item.left, item.top)===true
-      })
-      .map( item => {
-        return this.generateIfCollideY(item.left, item.top)
       }))
-      .join('||')
   }
 
   MoovingBallX = () => {
@@ -61,6 +63,7 @@ class Game extends Component {
     if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
       ){
         this.setState({goRight : !this.state.goRight})
+        this.deleteBricks()
     }
 
     setTimeout(this.MoovingBallX, 1)
@@ -79,6 +82,7 @@ class Game extends Component {
     if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY()
     ){
         this.setState({goDown : !this.state.goDown})
+        this.deleteBricks()
     }
 
     setTimeout(this.MoovingBallY, 1) 
@@ -109,6 +113,7 @@ class Game extends Component {
               <Bricks 
               top={item.top}
               left={item.left}
+              key={item.top+'-'+item.left}
               />
             ); 
           })}
