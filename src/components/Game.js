@@ -7,15 +7,23 @@ import Pad from './Pad';
 class Game extends Component {
   constructor(props) {
     super(props)
+    this.goRight=true;
+    this.goDown=false;
     this.state = {
       pointLeft: 20,
       pointTop:587,
-      goRight:true,
-      goDown:false,
-      xSpeed:1,
-      ySpeed:1,
       brickWall: this.getBrickWall()
     }
+  }
+
+  deleteBricks=()=>{
+    this.setState({brickWall:this.state.brickWall
+      .filter( item => {
+        return !(this.state.pointTop+20>item.top && this.state.pointTop<item.top+10 && this.state.pointLeft+20>item.left && this.state.pointLeft<item.left+65)
+      })
+      .map( item => {
+        return item
+      })})
   }
 
   generateIfCollideX = (left, top) => {
@@ -28,57 +36,51 @@ class Game extends Component {
 
   checkIfCollideX = () => {
     return (this.state.brickWall
-      .filter( item => {
+      .find( item => {
         return this.generateIfCollideX(item.left, item.top)===true
-      })
-      .map(item=>{
-        return this.generateIfCollideX(item.left, item.top)
       }))
-      .join('||')
   }
 
   checkIfCollideY = () => {
     return (this.state.brickWall
-      .filter( item => {
+      .find( item => {
         return this.generateIfCollideY(item.left, item.top)===true
-      })
-      .map( item => {
-        return this.generateIfCollideY(item.left, item.top)
       }))
-      .join('||')
   }
 
   MoovingBallX = () => {
-    if (this.state.goRight){
+    if (this.goRight){
       // eslint-disable-next-line 
-        this.setState({pointLeft : this.state.pointLeft+=this.state.xSpeed})
-    } else if (!this.state.goRight){
+        this.setState({pointLeft : this.state.pointLeft+=1})
+    } else if (!this.goRight){
       // eslint-disable-next-line 
-        this.setState({pointLeft : this.state.pointLeft-=this.state.xSpeed})
+        this.setState({pointLeft : this.state.pointLeft-=1})
     }
     
 
     if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
       ){
-        this.setState({goRight : !this.state.goRight})
+        this.goRight=!this.goRight
+        this.deleteBricks()
     }
 
     setTimeout(this.MoovingBallX, 1)
   }
 
   MoovingBallY = () => {
-    if (this.state.goDown){
+    if (this.goDown){
       // eslint-disable-next-line 
-        this.setState({pointTop : this.state.pointTop+=this.state.ySpeed})
-    } else if (!this.state.goDown){
+        this.setState({pointTop : this.state.pointTop+=1})
+    } else if (!this.goDown){
       // eslint-disable-next-line 
-        this.setState({pointTop : this.state.pointTop-=this.state.ySpeed})
+        this.setState({pointTop : this.state.pointTop-=1})
     }
     
 
     if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY()
     ){
-        this.setState({goDown : !this.state.goDown})
+        this.goDown=!this.goDown
+        this.deleteBricks()
     }
 
     setTimeout(this.MoovingBallY, 1) 
@@ -109,6 +111,7 @@ class Game extends Component {
               <Bricks 
               top={item.top}
               left={item.left}
+              key={item.top+'-'+item.left}
               />
             ); 
           })}
