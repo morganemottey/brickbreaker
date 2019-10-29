@@ -20,7 +20,7 @@ countDown = () => {
         this.setState({color: "red"})
     }
     if(this.state.counter === 0){
-        alert("YOU SUCK TRY AGAIN !")
+        
     }
     setTimeout(this.countDown, 1000)
 }
