@@ -72,9 +72,7 @@ class Game extends Component {
     }
 
 
-    if (this.state.pointLeft > 355 || this.state.pointLeft < 0) {
-      this.goRight = !this.goRight
-    } else if (this.checkIfCollideX()) {
+    if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()) {
       this.goRight = !this.goRight
       this.getBonus()
       this.deleteBricks()
@@ -93,12 +91,10 @@ class Game extends Component {
     }
 
 
-    if (this.state.pointTop > 587 || this.state.pointTop < 0) {
+    if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY()) {
       this.goDown = !this.goDown
-    } else if (this.checkIfCollideY()) {
-        this.goDown = !this.goDown
-        this.getBonus()
-        this.deleteBricks()
+      this.getBonus()
+      this.deleteBricks()
     }
 
     setTimeout(this.MoovingBallY, 1)
