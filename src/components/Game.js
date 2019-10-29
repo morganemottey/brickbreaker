@@ -49,7 +49,7 @@ class Game extends Component {
   }
 
   MoovingBallX = () => {
-    if (this.goRight){
+    if (this.goRight){      
       // eslint-disable-next-line 
         this.setState({pointLeft : this.state.pointLeft+=1})
     } else if (!this.goRight){

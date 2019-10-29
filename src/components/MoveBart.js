@@ -3,18 +3,22 @@ import './MoveBart.css';
 
 class Move extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.toRight = true;
+    this.toLeft = false;
+    this.toDown =true;
     this.state = {
-      moveBart: 350,
-      moveBeer: 500,
-      movePetard: 500,
-      moveGrenade: 500,
-      moveHamburger: 500,
+      bartDepart: 587,
+      bartLeft: 500,
+
+      downBeer: 500,
+      downPetard: 500,
+      downGrenade: 500,
+      downHamburger: 500,
+
     }
     // Intervalle de temps
-    setInterval(
-      this.positionRight, 400
-    );
+
     setInterval(
       this.positionHamburger, 400
     );
@@ -29,27 +33,69 @@ class Move extends Component {
     );
   };
 
-// Random Position
-  positionRight = () => {
-    const step = Math.floor(Math.random() -80) + 100
-    this.setState({
-      moveBart: this.state.moveBart + step
-    })
-        //setTimeout(this.positionRight, 2500)
+  //Mouvement Droite-Gauche de Bart au dessus du Pad
+  MouvBartX = () => {
+    console.log(this.toRight, this.state.bartDepart)
+    if (this.toRight) {
+      this.setState({ bartDepart: this.state.bartDepart + 20 })
+    } else {
+      this.setState({ bartDepart: this.state.bartDepart - 20 })
+    }
+    if (this.state.bartDepart > 505)
+      this.toRight = false;
+
+    else if (this.state.bartDepart < 175) {
+      this.toRight = true
+    }
+    setTimeout(this.MouvBartX, 500)
   }
+
+  componentDidMount() {
+    this.MouvBartX()
+  }
+
+  ////////////////////////////////////Sprint 2 ///////////////////////////////////////////////
+  MouvBartX = () => {
+    console.log(this.toRight, this.state.bartDepart)
+    if (this.toDown) {
+      this.setState({ downBeer: this.state.downBeer + 20 })
+    }
+    if (this.state.bartDepart > 505)
+      this.toRight = false;
+
+    else if (this.state.bartDepart < 175) {
+      this.toRight = true
+    }
+    setTimeout(this.MouvBartX, 500)
+  }
+
+  componentDidMount() {
+    this.MouvBartX()
+  }
+
+
+
+
+
+
+
+
+
+
+  ///////////////
   positionGrenade = () => {
     const step = Math.floor(Math.random() * 40) - 30
     this.setState({
       moveGrenade: this.state.moveGrenade + step
     })
-        //setTimeout(this.positionRight, 2500)
+    //setTimeout(this.positionRight, 2500)
   }
   positionHamburger = () => {
     const step = Math.floor(Math.random() * 40) - 20
     this.setState({
       moveHamburger: this.state.moveHamburger + step
     })
-      //setTimeout(this.positionRight, 2500)
+    //setTimeout(this.positionRight, 2500)
   }
   positionPetard = () => {
     const step = Math.floor(Math.random() * 10) - 10
@@ -65,7 +111,6 @@ class Move extends Component {
     })
     //setTimeout(this.positionRight, 2500)
   }
-  //////////////////////////////////////////:
 
 
 
@@ -73,13 +118,13 @@ class Move extends Component {
   render() {
 
     return (
-      <div>
-        <div id="bloc"><h1>Mon titre</h1></div>
+      <div style={{position: 'absolute', height:'600px', width:'375', top:'67px'}}>>
+        <div id="bloc"><h1></h1></div>
         <img
           style={{
             position: "absolute",
             margin: "auto",
-            marginLeft : "600px",
+            marginLeft: "600px",
             width: "50px",
             height: "30px",
             top: "0",
@@ -87,13 +132,13 @@ class Move extends Component {
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
-            transitionTimingFunction: 'ease'
+            transitionTimingFunction: 'linear'
           }} src="https://zupimages.net/up/19/43/pov4.jpg" />
-          <img
+        <img
           style={{
             position: "absolute",
             margin: "auto",
-            marginLeft : "400px",
+            marginLeft: "400px",
             width: "50px",
             height: "30px",
             top: "0",
@@ -101,13 +146,13 @@ class Move extends Component {
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
-            transitionTimingFunction: 'ease'
+            transitionTimingFunction: 'linear'
           }} src="https://zupimages.net/up/19/43/ist2.png" />
-          <img
+        <img
           style={{
             position: "absolute",
             margin: "auto",
-            marginLeft : "500px",
+            marginLeft: "500px",
             width: "50px",
             height: "30px",
             top: "0",
@@ -115,14 +160,14 @@ class Move extends Component {
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
-            transitionTimingFunction: 'ease'
+            transitionTimingFunction: 'linear'
           }} src="https://zupimages.net/up/19/43/0x6b.jpg" />
 
         <img
           style={{
             position: "absolute",
             margin: "auto",
-            marginLeft : "600px",
+            marginLeft: "600px",
             width: "30px",
             height: "30px",
             top: "0",
@@ -130,7 +175,7 @@ class Move extends Component {
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
-            transitionTimingFunction: 'ease'
+            transitionTimingFunction: 'linear'
           }} src="https://zupimages.net/up/19/43/zuj9.jpg" />
 
         <img
@@ -140,10 +185,10 @@ class Move extends Component {
             width: "30px",
             height: "30px",
             top: "0px",
-            left: `${this.state.moveBart}px`,
+            left: `${this.state.bartDepart}px`,
             transitionDuration: "500ms",
             transitionProperty: "left",
-            transitionTimingFunction: 'ease'
+            transitionTimingFunction: 'linear'
           }} src="https://zupimages.net/up/19/43/m9mu.gif" />
 
 
