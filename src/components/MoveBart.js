@@ -8,7 +8,7 @@ class Move extends Component {
     this.toLeft = false;
     this.toDown =true;
     this.state = {
-      bartDepart: 587,
+      bartDepart: 600,
       bartLeft: 500,
 
       downBeer: 500,
@@ -17,20 +17,6 @@ class Move extends Component {
       downHamburger: 500,
 
     }
-    // Intervalle de temps
-
-    setInterval(
-      this.positionHamburger, 400
-    );
-    setInterval(
-      this.positionGrenade, 400
-    );
-    setInterval(
-      this.positionPetard, 100
-    );
-    setInterval(
-      this.positionBeer, 200
-    );
   };
 
   //Mouvement Droite-Gauche de Bart au dessus du Pad
@@ -41,10 +27,10 @@ class Move extends Component {
     } else {
       this.setState({ bartDepart: this.state.bartDepart - 20 })
     }
-    if (this.state.bartDepart > 505)
+    if (this.state.bartDepart > 605)
       this.toRight = false;
 
-    else if (this.state.bartDepart < 175) {
+    else if (this.state.bartDepart < 300) {
       this.toRight = true
     }
     setTimeout(this.MouvBartX, 500)
@@ -55,62 +41,9 @@ class Move extends Component {
   }
 
   ////////////////////////////////////Sprint 2 ///////////////////////////////////////////////
-  MouvBartX = () => {
-    console.log(this.toRight, this.state.bartDepart)
-    if (this.toDown) {
-      this.setState({ downBeer: this.state.downBeer + 20 })
-    }
-    if (this.state.bartDepart > 505)
-      this.toRight = false;
-
-    else if (this.state.bartDepart < 175) {
-      this.toRight = true
-    }
-    setTimeout(this.MouvBartX, 500)
-  }
-
-  componentDidMount() {
-    this.MouvBartX()
-  }
-
-
-
-
-
-
-
-
-
-
-  ///////////////
-  positionGrenade = () => {
-    const step = Math.floor(Math.random() * 40) - 30
-    this.setState({
-      moveGrenade: this.state.moveGrenade + step
-    })
-    //setTimeout(this.positionRight, 2500)
-  }
-  positionHamburger = () => {
-    const step = Math.floor(Math.random() * 40) - 20
-    this.setState({
-      moveHamburger: this.state.moveHamburger + step
-    })
-    //setTimeout(this.positionRight, 2500)
-  }
-  positionPetard = () => {
-    const step = Math.floor(Math.random() * 10) - 10
-    this.setState({
-      movePetard: this.state.movePetard + step
-    })
-    //setTimeout(this.moveDonuts, 2500)
-  }
-  positionBeer = () => {
-    const step = Math.floor(Math.random() * 50) - 50
-    this.setState({
-      moveBeer: this.state.moveBeer + step
-    })
-    //setTimeout(this.positionRight, 2500)
-  }
+ ///Descente de la bière
+  
+///////////////////:
 
 
 
@@ -118,8 +51,8 @@ class Move extends Component {
   render() {
 
     return (
-      <div style={{position: 'absolute', height:'600px', width:'375', top:'67px'}}>>
-        <div id="bloc"><h1></h1></div>
+      <div >
+        <div style = {{position : "absolute"}}><h1></h1></div>
         <img
           style={{
             position: "absolute",
@@ -128,7 +61,7 @@ class Move extends Component {
             width: "50px",
             height: "30px",
             top: "0",
-            bottom: `${this.state.moveGrenade}px`,
+            bottom: `${this.state.downGrenade}px`,
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
@@ -142,7 +75,7 @@ class Move extends Component {
             width: "50px",
             height: "30px",
             top: "0",
-            bottom: `${this.state.moveHamburger}px`,
+            bottom: `${this.state.downHamburger}px`,
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
@@ -156,7 +89,7 @@ class Move extends Component {
             width: "50px",
             height: "30px",
             top: "0",
-            bottom: `${this.state.movePetard}px`,
+            bottom: `${this.state.downPetard}px`,
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
@@ -171,7 +104,7 @@ class Move extends Component {
             width: "30px",
             height: "30px",
             top: "0",
-            bottom: `${this.state.moveBeer}px`,
+            bottom: `${this.state.downBeer}px`,
             left: "30px",
             transitionDuration: "500ms",
             transitionProperty: "top",
@@ -186,10 +119,11 @@ class Move extends Component {
             height: "30px",
             top: "0px",
             left: `${this.state.bartDepart}px`,
+            textAlign: "center",
             transitionDuration: "500ms",
             transitionProperty: "left",
             transitionTimingFunction: 'linear'
-          }} src="https://zupimages.net/up/19/43/m9mu.gif" />
+          }} src="https://zupimages.net/up/19/44/qmwl.jpg" />
 
 
       </div>
