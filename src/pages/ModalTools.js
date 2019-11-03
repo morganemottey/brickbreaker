@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { IoMdHelpCircleOutline } from 'react-icons/io';
+import { IoIosClose,
+         IoMdCog,
+         IoMdHelp,
+         IoIosVolumeHigh, 
+         IoIosArrowRoundBack, 
+         IoIosArrowRoundForward } from 'react-icons/io';
 import './ModalTools.css';
-
-ReactModal.defaultStyles.overlay.backgroundColor = 'cornsilk';
 
 class ModalTools extends React.Component {
   constructor () {
@@ -37,28 +40,34 @@ class ModalTools extends React.Component {
   
   render () {
     return (
-      <div>
-        <button onClick={this.handleOpenModal}>tools</button>
-        <button onClick={this.handleOpenModal2}>parameter</button>
+      <div class="block">
+        <button onClick={this.handleOpenModal}><IoMdHelp/></button>
+        <button onClick={this.handleOpenModal2}><IoMdCog/></button>
         <ReactModal 
            isOpen={this.state.showModal}
            contentLabel="Modal #1 Global Style Override Example"
            onRequestClose={this.handleCloseModal}
         >
-          <p>Modal text!</p>
-          <button onClick={this.handleCloseModal}><ion-icon name="close-circle"></ion-icon></button>
+          <button onClick={this.handleCloseModal} class="close"><IoIosClose /></button>
+          <h1 class="title">Tools</h1>
+          <p> dunuts = long pad
+              beer = malusse
+              <IoIosArrowRoundBack/>move left
+              <IoIosArrowRoundForward/>move right
+          </p>
+         </ReactModal>
 
 
-
-
-        </ReactModal>
         <ReactModal 
            isOpen={this.state.showModal2}
            contentLabel="Modal #2 Global Style Override Example"
            onRequestClose={this.handleCloseModal2}
         >
+          <button onClick={this.handleCloseModal2} class="close"><IoIosClose /></button>
+          <h1>parameter</h1>
           <p>Modal #2 text!</p>
-          <button onClick={this.handleCloseModal2}><ion-icon name="IoMdHelpCircleOutline"></ion-icon></button>
+          <button onClick={this.handleCloseModal2}><IoIosVolumeHigh /></button>
+          
         </ReactModal>
       </div>
     );
