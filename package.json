@@ -7,7 +7,10 @@
     "react-dom": "^16.10.2",
     "react-icons": "^3.8.0",
     "react-modal": "^3.11.1",
+<<<<<<< HEAD
     "react-router-dom": "^5.1.2",
+=======
+>>>>>>> 75b1e96e6984424bdb03a7c3f6da07cf23bef790
     "react-scripts": "3.2.0"
   },
   "scripts": {
