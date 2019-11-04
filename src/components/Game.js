@@ -3,6 +3,8 @@ import './Game.css';
 import Point from './Point';
 import Bricks from './Bricks';
 import Pad from './Pad';
+import MoveBart from './MoveBart'
+import Malus from './Malus'
 
 class Game extends Component {
   constructor(props) {
@@ -10,6 +12,9 @@ class Game extends Component {
     this.goRight=true;
     this.goDown=false;
     this.state = {
+      bartDepart: 0,
+      malusTop : -35,
+      malusLeft : this.bartDepart,
       pointLeft: 20,
       pointTop:587,
       brickWall: this.getBrickWall()
@@ -96,16 +101,52 @@ class Game extends Component {
     return brick;
   };
 
+  MouvBartX = () => {
+    if (this.toRight) {
+      this.setState({ bartDepart:  this.state.bartDepart + 5 })
+    } else {
+      this.setState({ bartDepart: this.state.bartDepart - 5 })
+    }
+    if (this.state.bartDepart > 375-30)
+      this.toRight = false;
+
+    else if (this.state.bartDepart < 0) {
+      this.toRight = true
+    }
+    setTimeout(this.MouvBartX, 100)
+  }
+
+falling = () => {
+  this.setState({
+    malusTop : this.state.malusTop + 10,
+    malusLeft : this.state.malusLeft,
+  })
+  setTimeout(this.falling, 1000)
+}
+
+
+
   componentDidMount(){
     this.MoovingBallX()
     this.MoovingBallY()
+    this.MouvBartX()
+    this.falling()
+ 
   }
 
   render(){
-    const {pointLeft, pointTop} = this.state
+    const {pointLeft, pointTop, bartDepart, malusTop, malusLeft} = this.state
     return (
       <div className="Game">
-        <div style={{position: 'relative', height:'600px', width:'375', top:'67px'}}>
+        
+        <div style={{position: 'relative', height:'600px', width:'375', top:'67px' , border:'1px black solid'}}>
+        <MoveBart left = {bartDepart} />
+        
+        <Malus 
+        left = {malusLeft} 
+        top = {malusTop}/>
+      
+        
           {this.state.brickWall.map( item => {
             return(
               <Bricks 
@@ -117,6 +158,7 @@ class Game extends Component {
           })}
         <Point left={pointLeft} top={pointTop}/>
         <Pad/>
+       
         </div>
       </div>
     );

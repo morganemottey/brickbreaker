@@ -1,23 +1,26 @@
 import React, { Component } from "react";
-import './MoveBart.css';
+import './Malus.css';
 
-class Move extends Component {
+class Malus extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
 
+
   render() {
-    const { left } = this.props;
+    const { left , top } = this.props;
     return (
       <>
 
         <img
-          className="bart"
+          className="hamburger"
           style={{
             left: `${left}px`,
+            top :  `${top}px`,
           }}
           src="https://i.ya-webdesign.com/images/skateboard-cartoon-png-4.png" />
+       
         
       </>
 
@@ -26,7 +29,7 @@ class Move extends Component {
   }
 }
 
-export default Move;
+export default Malus;
 
 
 

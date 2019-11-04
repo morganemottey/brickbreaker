@@ -1,65 +1,15 @@
 
 .bart{
+    border: 1px solid black;
     position : absolute;
     margin : auto;
     width: 30px;
     height: 30px;
-    top: 0px;
-    text-align: center;
+    top: -35px;
+    /* text-align: center;
     transition-duration: 100ms;
     transition-property: left;
-    transition-timing-function: linear;
+    transition-timing-function: linear; */
     
 }
-.beer{
-    position : absolute;
-    margin : auto;
-    margin-left: 600px;
-    left: 30px;
-    width: 30px;
-    height: 30px;
-    bottom: 0px;
-    transition-duration: 100ms;
-    transition-property: top;
-}
 
-
-.petard{
-    position : absolute;
-    margin : auto;
-    margin-left: 500px;
-    width: 50px;
-    height: 30px;
-    bottom: 0;
-    left: 30px;
-    transition-duration: 500ms;
-    transition-property: top;
-    transition-timing-function: linear;
-}
-
-.hamburger {
-    position: absolute;
-    margin: auto;
-    margin-left: 400px;
-    width: 50px;
-    height: 30px;
-    bottom: 0;
-    left: 30px;
-    transition-duration: 500ms;
-    transition-property: top;
-    transition-timing-function: linear;
-}
-
-.grenade {
-    position: absolute;
-    margin: auto;
-    margin-left: 600px;
-    width: 50px;
-    height: 30px;
-    bottom: 0;
-    left: 30px;
-    transition-duration: 500ms;
-    transition-property: top;
-    transition-timing-function: linear;
-
-}
