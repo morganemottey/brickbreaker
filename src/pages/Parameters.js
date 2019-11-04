@@ -11,7 +11,6 @@ import { IoMdClose,
 import totoUrl from '../musique/toto.mp3'
 import Duff from '../img/Duff.png'
 import Donuts from '../img/Donuts.png'
-import Game from '../components/Game'
 
 class Parameters extends React.Component {
   constructor () {
@@ -60,7 +59,7 @@ class Parameters extends React.Component {
       <div class="block">
         <button onClick={this.handleOpenModal}><IoMdHelp/></button>
         <button onClick={this.handleOpenModal2}><IoMdCog/></button>
-        <button onClick={this.handleOpenModal2}><Game/></button>
+        
         <ReactModal 
            style={{content: { backgroundColor:'#FFD700',width:'70%',height: '60%'}}}
            isOpen={this.state.showModal}
@@ -87,6 +86,7 @@ class Parameters extends React.Component {
           <h1 class="title">parametre</h1>
           <p>musique on/off<button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong" /></button></p> 
         </ReactModal>
+
       </div>
     );
   }
