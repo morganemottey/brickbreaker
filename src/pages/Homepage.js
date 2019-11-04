@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Homepage.css';
-import Parameters from '../components/Parameters';
+import Parameters from './Parameters';
 import Game from '../pages/Game';
 
 class Homepage extends Component {

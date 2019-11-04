@@ -9,8 +9,8 @@ import { IoMdClose,
          IoIosArrowRoundBack, 
          IoIosArrowRoundForward } from 'react-icons/io';
 import totoUrl from '../musique/toto.mp3'
-import Duff from '../img/Duff.png'
-import Donuts from '../img/Donuts.png'
+import Duff from '../images/Duff.png'
+import Donuts from '../images/Donuts.png'
 
 class Parameters extends React.Component {
   constructor () {
