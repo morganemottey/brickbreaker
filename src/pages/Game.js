@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './Game.css';
-import Point from './Point';
-import Bricks from './Bricks';
-import Pad from './Pad';
+import Point from '../components/Point';
+import Bricks from '../components/Bricks';
+import Pad from '../components/Pad';
 
 class Game extends Component {
   constructor(props) {

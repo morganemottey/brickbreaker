@@ -1,5 +1,5 @@
 body {
-    background-color: #2a6171;
+    background: linear-gradient(180deg, rgba(0,157,255,1) 0%, rgba(165,211,240,1) 100%);
 }
 .Game {
     margin: 0 auto;

@@ -1,12 +1,12 @@
 import React from 'react';
-import Game from './components/Game';
 import './App.css';
+import Homepage from './pages/Homepage';
 
 
 function App() {
   return (
     <div className="App">
-      <Game />
+    <Homepage />
     </div>
   );
 }

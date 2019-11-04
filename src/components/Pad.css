@@ -3,7 +3,9 @@
 
     width: 60px;
     height: 10px;
-    background-color: #70C3B3;
+    background-color: black;
+    border: solid 2px;
+    box-shadow: 2px 2px 2px grey;;
     position: absolute;
     bottom: 50px;   
     left: 50%;
