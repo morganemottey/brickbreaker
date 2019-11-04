@@ -1,11 +1,11 @@
 import React from 'react';
-import ModalTools from './pages/ModalTools';
+import Parameters from './pages/Parameters';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <ModalTools />
+      <Parameters />
     </div>
   );
 }
