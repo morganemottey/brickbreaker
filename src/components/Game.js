@@ -7,11 +7,11 @@ import Pad from './Pad';
 class Game extends Component {
   constructor(props) {
     super(props)
-    // this.xPadMin= 157.5,
-    // this.xPadMax= 217.5,
     this.interval=100;
     this.goRight=true;
     this.goDown=false;
+    this.isBallMoving=false;
+    this.counterBall=0;
     this.state = {
       pointLeft: 20,
       pointTop: 400,
@@ -25,6 +25,11 @@ class Game extends Component {
         this.setState({
             xLeft: Math.ceil(event.touches[0].pageX)
         })
+        if(!this.isBallMoving && this.counterBall ===1){
+          this.isBallMoving = true
+        } else if (!this.isBallMoving){
+          this.counterBall ++
+        }
     }, false);
     document.addEventListener('touchmove', event => {
         if ((this.state.xLeft > 0) && (this.state.xLeft < 315)) 
@@ -32,6 +37,7 @@ class Game extends Component {
             xLeft: Math.ceil(event.touches[0].pageX)
         })
     }, false);
+    
 }
 
   deleteBricks=()=> {
@@ -75,56 +81,36 @@ class Game extends Component {
 
 
 
-  MoovingBallX = () => {
+  moovingBall = () => {
     const speed=100*this.interval/1000
-    if (this.goRight){
-      // eslint-disable-next-line 
-        this.setState({pointLeft : this.state.pointLeft+=speed})
-    } else if (!this.goRight){
-      // eslint-disable-next-line 
-        this.setState({pointLeft : this.state.pointLeft-=speed})
-    }
-
-    if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
+    if (this.isBallMoving) {
+      if (this.goRight){
+        // eslint-disable-next-line 
+          this.setState({pointLeft : this.state.pointLeft+=speed})
+      } else if (!this.goRight){
+        // eslint-disable-next-line 
+          this.setState({pointLeft : this.state.pointLeft-=speed})
+      }
+      if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
+        ){
+          this.goRight=!this.goRight
+          this.deleteBricks()
+      }
+      if (this.goDown){
+        // eslint-disable-next-line 
+          this.setState({pointTop : this.state.pointTop+=speed})
+      } else if (!this.goDown){
+        // eslint-disable-next-line 
+          this.setState({pointTop : this.state.pointTop-=speed})
+      }
+      if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
       ){
-        this.goRight=!this.goRight
-        this.deleteBricks()
-    }
-    if (this.goDown){
-      // eslint-disable-next-line 
-        this.setState({pointTop : this.state.pointTop+=speed})
-    } else if (!this.goDown){
-      // eslint-disable-next-line 
-        this.setState({pointTop : this.state.pointTop-=speed})
-    }
-    
-    if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
-    ){
-        this.goDown=!this.goDown
-        this.deleteBricks()
-    }
-
-    setTimeout(this.MoovingBallX, this.interval)
+          this.goDown=!this.goDown
+          this.deleteBricks()
+      }
+    } else this.setState({pointTop:521, pointLeft:this.state.xLeft+20})
+    setTimeout(this.moovingBall, this.interval)
   }
-
-  // MoovingBallY = () => {
-  //   const speed=0.03*this.interval
-  //   if (this.goDown){
-  //     // eslint-disable-next-line 
-  //       this.setState({pointTop : this.state.pointTop+=speed})
-  //   } else if (!this.goDown){
-  //     // eslint-disable-next-line 
-  //       this.setState({pointTop : this.state.pointTop-=speed})
-  //   }
-    
-  //   if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
-  //   ){
-  //       this.goDown=!this.goDown
-  //       this.deleteBricks()
-  //   }
-
-  //   setTimeout(this.MoovingBallY, this.interval) 
-  // }
 
   getBrickWall = () => {
     const brick = [];
@@ -137,7 +123,7 @@ class Game extends Component {
   };
 
   componentDidMount(){
-    this.MoovingBallX()
+    this.moovingBall()
     // this.MoovingBallY()
     this.movePad()
   }
