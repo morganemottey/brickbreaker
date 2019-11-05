@@ -79,8 +79,6 @@ class Game extends Component {
       && this.state.pointLeft-10<this.state.xLeft+30)
   }
 
-
-
   moovingBall = () => {
     const speed=100*this.interval/1000
     if (this.isBallMoving) {
@@ -103,10 +101,16 @@ class Game extends Component {
         // eslint-disable-next-line 
           this.setState({pointTop : this.state.pointTop-=speed})
       }
-      if (this.state.pointTop > 587 || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
+      if (this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
       ){
           this.goDown=!this.goDown
           this.deleteBricks()
+      }
+      if (this.state.pointTop > 587){
+        this.isBallMoving = false
+        this.goDown=false
+        this.counterBall=0
+        this.goRight=true
       }
     } else this.setState({pointTop:521, pointLeft:this.state.xLeft+20})
     setTimeout(this.moovingBall, this.interval)
@@ -133,7 +137,6 @@ class Game extends Component {
     return (
       <div className="Game">
         <div style={{position:'relative', height:'600px', width:'375', top:'67px'}}>
-
           {this.state.brickWall.map( item => {
             return(
               <Bricks 
@@ -143,7 +146,7 @@ class Game extends Component {
               />
             ); 
           })}
-        <Point left={pointLeft} top={pointTop}/>
+        <Point left={pointLeft} top={pointTop} move={this.isBallMoving}/>
         <Pad left={xLeft}/>
         </div>
       </div>
@@ -151,4 +154,6 @@ class Game extends Component {
   }
 }
 
+
+// this.state.pointTop > 587 ||
 export default Game;
