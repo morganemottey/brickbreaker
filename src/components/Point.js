@@ -13,7 +13,8 @@ class Point extends Component {
             height: "20px",
             background: `radial-gradient(white, #9198e5)`,
             borderRadius: "50%",
-            position:'absolute'
+            position:'absolute',
+            transition: 'all linear 100ms'
         }
         const {left, top} = this.props
 
