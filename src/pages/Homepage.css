@@ -1,23 +1,5 @@
-@font-face{
-    font-family: 'Simpsonfont';
-    src: url(../assets/Simpsonfont.ttf);
-}
-
-body{
-    font-family: 'Simpsonfont';
-}
-
-.title {
+.titleHome {
     font-family: 'Simpsonfont';
     text-align: center;
-    color: black;
-}
-
-h1{
-    color: black;
-}
-
-img{
-    width: 30%;
-    height: 30%;
+    color: rgb(253, 237, 13);
 }
