@@ -4,7 +4,12 @@
 }
 
 .App {
+<<<<<<< HEAD
   text-align: right;
+=======
+  text-align: center;
+
+>>>>>>> dev
 }
 
 .App-logo {
