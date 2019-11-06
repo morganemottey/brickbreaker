@@ -24,7 +24,8 @@ class Game extends Component {
       pointTop: 400,
       brickWall: this.getBrickWall(),
       xLeft: 0,
-      bonus: []
+      bonus: [],
+      getBonus: false,
     }
   }
 
@@ -61,7 +62,7 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    if (Math.ceil(Math.random() * 6) === 6) {
+    if (Math.ceil(Math.random() * 5) === 5 && !this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
@@ -69,9 +70,11 @@ class Game extends Component {
         .map(item => {
           return item
         })
-      console.log(newDonutsTab)
       newDonutsTab.push(...this.state.bonus)
-      this.setState({ bonus: newDonutsTab })
+      this.setState({ bonus: newDonutsTab, getBonus: true })
+    }
+    else if (this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
+      this.setState({ getBonus: false })
     }
   }
 
