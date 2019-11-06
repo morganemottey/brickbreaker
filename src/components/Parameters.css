@@ -1,0 +1,30 @@
+.title{
+  text-align: center;
+  font-family: 'Simpsonfont';
+  font-size: 2.5em;
+  margin: 20px
+}
+.iconsFlèche{
+  width: 50px;
+  height: 50px;
+}
+.iconCoeur{
+  width: 40px;
+  height: 40px;
+}
+.iconSong{
+  width: 20px;
+  height: 20px;
+}
+.block{
+  display: block;
+  float: right;
+}
+.alignItems{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.x{
+  margin: 50px;
+}
