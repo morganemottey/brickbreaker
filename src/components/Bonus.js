@@ -6,6 +6,7 @@ class Bonus extends Component {
         super(props)
         this.style={
             width:'50px',
+            height:'50px',
             position:'absolute'
         }
         this.state={

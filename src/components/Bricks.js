@@ -11,7 +11,7 @@ class Bricks extends Component {
       const brickSize = {
          width:'67px',
          height:'15px',
-         backgroundColor:'#75cac3',
+         backgroundColor:'#993300',
          position:'absolute',
       }  
       return (
