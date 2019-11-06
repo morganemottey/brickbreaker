@@ -13,12 +13,13 @@ class Point extends Component {
             height: "20px",
             background: `radial-gradient(white, #9198e5)`,
             borderRadius: "50%",
-            position:'absolute'
+            position:'absolute',
+            // transition: 'all linear 100ms'
         }
-        const {left, top} = this.props
+        const {left, top, move} = this.props
 
         return(
-            <div style={{...style, left:left, top:top}}/>
+            <div style={{...style, left:left, top:top, transition: move ? 'all linear 100ms' : 'none' }}/>
         )
     }
 
