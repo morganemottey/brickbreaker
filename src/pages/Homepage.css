@@ -15,9 +15,20 @@ body{
 
 h1{
     color: black;
+    font-size: 2rem;
 }
 
 img{
-    width: 30%;
-    height: 30%;
+    width: 70%;
+    height: 70%;
+}
+
+.linktogame{
+    font-family: 'Simpsonfont';
+    font-size: 1.5rem;
+    background-color: black;
+    border: solid 1px;
+    border-radius: 55px;
+    box-shadow: 2px 5px 5px black;
+    padding: 4%;
 }

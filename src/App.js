@@ -1,12 +1,21 @@
 import React from 'react';
 import './App.css';
 import Homepage from './pages/Homepage';
+import Game from './pages/Game';
+import { Route, BrowserRouter } from 'react-router-dom';
+import Popuploose from './components/Popuploose';
+import Popupwin from './components/Popupwin';
 
 function App() {
   return (
     <div className="App">
-    <Homepage />
-    </div>
+    <BrowserRouter>
+     <div>
+       <Route path="/" exact component={Homepage}/>
+       <Route path="/Game" exact component={Game}/>
+     </div>
+    </BrowserRouter>
+ </div>
   );
 }
 
