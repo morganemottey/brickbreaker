@@ -17,7 +17,7 @@ class Malus extends Component {
             left: `${left}px`,
             top: `${top}px`,
           }}
-          src="https://i.ya-webdesign.com/images/skateboard-cartoon-png-4.png" />
+          src="https://i.ya-webdesign.com/images/skateboard-cartoon-png-4.png" alt='#'/>
 
 
       </>
