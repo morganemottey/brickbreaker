@@ -61,7 +61,7 @@ class Parameters extends React.Component {
         <button onClick={this.handleOpenModal2}><IoMdCog/></button>
         
         <ReactModal 
-           style={{content: { backgroundColor:'#FFD700',width:'70%',height: '60%'}}}
+           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%',height: '60%'}}}
            isOpen={this.state.showModal}
            onRequestClose={this.handleCloseModal}
         >
@@ -69,22 +69,22 @@ class Parameters extends React.Component {
       
             <h1 class="title">info jeux</h1> 
           <div style={{ margin: '30px'}}>
-            <p><img style={{ width: "40px", height: "40px" }} src={Donuts}/> = long pad</p>
-            <p> <img style={{ width: "35px", height: "50px" }} src={Duff}/> = malusse</p>
-            <p><IoIosArrowRoundBack className="iconsFlèche"/> = move left</p>
-            <p><IoIosArrowRoundForward className="iconsFlèche"/> = move right</p>
-            <p  style={{ display: "flex"}}><IoIosHeart className="iconCoeur"/> = life</p>
+            <p className="alignItems"><img style={{ width: "40px", height: "40px" }} src={Donuts}/> = Agrendie la raquette</p>
+            <p className="alignItems"><img style={{ width: "35px", height: "50px" }} src={Duff}/> = Malusse</p>
+            <p className="alignItems"><IoIosArrowRoundBack className="iconsFlèche"/> = Se déplacer a gauche</p>
+            <p className="alignItems"><IoIosArrowRoundForward className="iconsFlèche"/> = Se déplacer a droite</p>
+            <p className="alignItems"><IoIosHeart className="iconCoeur"/> = Vie</p>
           </div>
          </ReactModal>
 
         <ReactModal 
-           style={{content: {backgroundColor: '#FFD700', width: '70%', height: '60%' }}}
+           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%',height: '60%'}}}
            isOpen={this.state.showModal2}
            onRequestClose={this.handleCloseModal2}
         >
           <button onClick={this.handleCloseModal2} style={{ float: "right"}}><IoMdClose /></button>
           <h1 class="title">parametre</h1>
-          <p>musique on/off<button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong" /></button></p> 
+          <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Musique on/off</p>
         </ReactModal>
 
       </div>
