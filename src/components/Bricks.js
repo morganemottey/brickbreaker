@@ -9,7 +9,7 @@ class Bricks extends Component {
     render() { 
       const {left, top} = this.props
       const brickSize = {
-         width:'74px',
+         width:'67px',
          height:'15px',
          backgroundColor:'#993300',
          position:'absolute',
