@@ -53,7 +53,7 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    // if(Math.ceil(Math.random()*1)===1){
+    if(Math.ceil(Math.random()*5)===5){
     const newDonutsTab = this.state.brickWall
       .filter( item => {
         return (this.state.pointTop+20>item.top && this.state.pointTop<item.top+10 && this.state.pointLeft+20>item.left && this.state.pointLeft<item.left+67)
@@ -61,9 +61,10 @@ class Game extends Component {
       .map( item => {
         return item
       })
+      console.log(newDonutsTab)
       newDonutsTab.push(...this.state.bonus)
       this.setState({bonus: newDonutsTab})
-    // }
+    }
   }
 
   generateIfCollideX = (left, top) => {
@@ -108,9 +109,9 @@ class Game extends Component {
       }
       if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
         ){
-          this.goRight=!this.goRight
-          this.deleteBricks()
           this.getBonus()
+          this.deleteBricks()
+          this.goRight=!this.goRight         
       }
       if (this.goDown){
         // eslint-disable-next-line 
@@ -121,9 +122,9 @@ class Game extends Component {
       }
       if (this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
       ){
-          this.goDown=!this.goDown
-          this.deleteBricks()
           this.getBonus()
+          this.deleteBricks()
+          this.goDown=!this.goDown
       }
       if (this.state.pointTop > 587){
         this.isBallMoving = false
