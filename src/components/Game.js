@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+ import React, {Component} from 'react';
 import './Game.css';
 import Point from './Point';
 import Bricks from './Bricks';
@@ -116,13 +116,13 @@ class Game extends Component {
     setTimeout(this.MouvBartX, 100)
   }
 
-falling = () => {
+  falling = () => {
   this.setState({
     malusTop : this.state.malusTop + 10,
     malusLeft : this.state.malusLeft,
   })
   setTimeout(this.falling, 1000)
-}
+  }
 
 
 
