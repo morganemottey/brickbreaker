@@ -16,6 +16,7 @@ class Game extends Component {
     this.goDown = false;
     this.isBallMoving = false;
     this.counterBall = 0;
+    this.life=3;
     this.state = {
       bartDepart: 0,
       // malusTop : -35,
@@ -193,6 +194,11 @@ class Game extends Component {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
       <div className="Game">
+        <div className="lifeBar">
+          <div className={this.life>=3 ? "life" : "noLife"}></div>
+          <div className={this.life>=2 ? "life" : "noLife"}></div>
+          <div className={this.life>=1 ? "life" : "noLife"}></div>
+        </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />
           {/* <Malus 

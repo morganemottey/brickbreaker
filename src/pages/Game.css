@@ -13,4 +13,30 @@ body {
     transform: scale(0.80);
 }
 
+.lifeBar{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: -30px;
+    left: 295px;
+    width: 80px;
+}
+
+.life{
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(white, #9198e5);
+    border: 1px #9198e5 solid;
+    border-radius: 50%;
+}
+
+.noLife{
+    width: 18px;
+    height: 18px;
+    /* background: radial-gradient(white, #9198e5); */
+    border: 1px #9198e5 solid;
+    border-radius: 50%;
+}
+
+
 
