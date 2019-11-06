@@ -18,8 +18,8 @@ class Game extends Component {
     this.counterBall=0;
     this.state = {
       bartDepart: 0,
-      malusTop : -35,
-      malusLeft : this.bartDepart,
+      // malusTop : -35,
+      // malusLeft : this.bartDepart,
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
@@ -167,32 +167,32 @@ class Game extends Component {
     setTimeout(this.MouvBartX, 100)
   }
 
-  falling = () => {
-  this.setState({
-    malusTop : this.state.malusTop + 10,
-    malusLeft : this.state.malusLeft,
-  })
-  setTimeout(this.falling, 1000)
-  }
+  // falling = () => {
+  // this.setState({
+  //   malusTop : this.state.malusTop + 10,
+  //   malusLeft : this.state.malusLeft,
+  // })
+  // setTimeout(this.falling, 1000)
+  // }
 
 
   componentDidMount(){
     this.moovingBall()
     this.movePad()
     this.MouvBartX()
-    this.falling()
+    // this.falling()
   }
 
 
   render(){
-    const {pointLeft, pointTop, xLeft, bartDepart, malusTop, malusLeft} = this.state
+    const {pointLeft, pointTop, xLeft, bartDepart} = this.state
     return (
       <div className="Game">
         <div style={{position:'relative', height:'600px', width:'375', top:'67px'}}>
           <MoveBart left = {bartDepart} />
-          <Malus 
+          {/* <Malus 
           left = {malusLeft} 
-          top = {malusTop}/>
+          top = {malusTop}/> */}
           {this.state.brickWall.map( item => {
             return(
               <Bricks 
