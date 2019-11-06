@@ -56,7 +56,7 @@ class Parameters extends React.Component {
 
   render () {
     return (
-      <div class="block">
+      <div className="block">
         <button onClick={this.handleOpenModal}><IoMdHelp/></button>
         <button onClick={this.handleOpenModal2}><IoMdCog/></button>
         
@@ -69,8 +69,8 @@ class Parameters extends React.Component {
       
             <h1 class="title">info jeux</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "40px", height: "40px" }} src={Donuts}/> = Agrendie la raquette</p>
-            <p className="alignItems"><img style={{ width: "35px", height: "50px" }} src={Duff}/> = Malusse</p>
+            <p className="alignItems"><img style={{ width: "40px", height: "40px" }} src={Donuts} alt='Donuts'/> = Agrendie la raquette</p>
+            <p className="alignItems"><img style={{ width: "35px", height: "50px" }} src={Duff} alt='Duff'/> = Malusse</p>
             <p className="alignItems"><IoIosArrowRoundBack className="iconsFlèche"/> = Se déplacer a gauche</p>
             <p className="alignItems"><IoIosArrowRoundForward className="iconsFlèche"/> = Se déplacer a droite</p>
             <p className="alignItems"><IoIosHeart className="iconCoeur"/> = Vie</p>

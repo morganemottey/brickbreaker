@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Game.css';
+
 import Point from '../components/Point';
 import Bricks from '../components/Bricks';
 import Pad from '../components/Pad';
+import Bonus from '../components/Bonus';
 
 class Game extends Component {
   constructor(props) {
@@ -16,7 +18,8 @@ class Game extends Component {
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
-      xLeft:0
+      xLeft:0,
+      bonus: []
     }
   }
 
@@ -43,14 +46,30 @@ class Game extends Component {
   deleteBricks=()=> {
     this.setState({brickWall:this.state.brickWall
       .filter( item => {
-        return !(this.state.pointTop+20>item.top && this.state.pointTop<item.top+10 && this.state.pointLeft+20>item.left && this.state.pointLeft<item.left+65)
+        return !(this.state.pointTop+20>item.top && this.state.pointTop<item.top+10 && this.state.pointLeft+20>item.left && this.state.pointLeft<item.left+67)
       })
       .map( item => {
         return item
       })})
   }
 
+  getBonus = () => {
+    if(Math.ceil(Math.random()*6)===6){
+    const newDonutsTab = this.state.brickWall
+      .filter( item => {
+        return (this.state.pointTop+20>item.top && this.state.pointTop<item.top+10 && this.state.pointLeft+20>item.left && this.state.pointLeft<item.left+67)
+      })
+      .map( item => {
+        return item
+      })
+      console.log(newDonutsTab)
+      newDonutsTab.push(...this.state.bonus)
+      this.setState({bonus: newDonutsTab})
+    }
+  }
+
   generateIfCollideX = (left, top) => {
+
     return (this.state.pointTop+17>top && this.state.pointTop<top+7 && this.state.pointLeft+20>left && this.state.pointLeft<left+67)
   }
 
@@ -60,15 +79,15 @@ class Game extends Component {
 
   checkIfCollideX = () => {
     return (this.state.brickWall
-      .find( item => {
-        return this.generateIfCollideX(item.left, item.top)===true
+      .find(item => {
+        return this.generateIfCollideX(item.left, item.top) === true
       }))
   }
 
   checkIfCollideY = () => {
     return (this.state.brickWall
-      .find( item => {
-        return this.generateIfCollideY(item.left, item.top)===true
+      .find(item => {
+        return this.generateIfCollideY(item.left, item.top) === true
       }))
   }
 
@@ -91,8 +110,9 @@ class Game extends Component {
       }
       if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
         ){
-          this.goRight=!this.goRight
+          this.getBonus()
           this.deleteBricks()
+          this.goRight=!this.goRight         
       }
       if (this.goDown){
         // eslint-disable-next-line 
@@ -103,8 +123,9 @@ class Game extends Component {
       }
       if (this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
       ){
-          this.goDown=!this.goDown
+          this.getBonus()
           this.deleteBricks()
+          this.goDown=!this.goDown
       }
       if (this.state.pointTop > 587){
         this.isBallMoving = false
@@ -118,17 +139,16 @@ class Game extends Component {
 
   getBrickWall = () => {
     const brick = [];
-        for (let i = 0; i < 6; i++) {     
-            for (let j = 0; j < 5; j++){
-              brick.push ({top:i*25, left:j*77})
-            } 
-        }
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 5; j++) {
+        brick.push({ top: i * 25, left: j * 77 })
+      }
+    }
     return brick;
   };
 
   componentDidMount(){
     this.moovingBall()
-    // this.MoovingBallY()
     this.movePad()
   }
 
@@ -144,8 +164,16 @@ class Game extends Component {
               left={item.left}
               key={item.top+'-'+item.left}
               />
-            ); 
+            );
           })}
+          {this.state.bonus.map(item => {
+            return (
+              <Bonus
+                top={item.top}
+                left={item.left+10}
+                key={item.top + '-' + item.left}/>
+            )}
+            )}
         <Point left={pointLeft} top={pointTop} move={this.isBallMoving}/>
         <Pad left={xLeft}/>
         </div>
@@ -154,6 +182,4 @@ class Game extends Component {
   }
 }
 
-
-// this.state.pointTop > 587 ||
 export default Game;
