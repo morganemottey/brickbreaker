@@ -104,7 +104,7 @@ class Game extends Component {
   checkIfCollidePadY = () => {
     return (this.state.pointTop > 518
       && this.state.pointTop <= 521
-      && this.state.pointLeft - 10 > this.state.xLeft - 30
+      && this.state.pointLeft + 10 > this.state.xLeft - 30
       && this.state.pointLeft - 10 < this.state.xLeft + 30)
   }
 
