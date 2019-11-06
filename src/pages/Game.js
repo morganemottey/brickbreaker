@@ -13,7 +13,7 @@ import Popupwin from '../components/Popupwin';
 class Game extends Component {
   constructor(props) {
     super(props)
-    this.interval = 100;
+    this.interval = 5;
     this.goRight = true;
     this.goDown = false;
     this.isBallMoving = false;
@@ -29,6 +29,7 @@ class Game extends Component {
       xLeft: 0,
       bonus: [],
       getBonus: false,
+      timer:0
     }
   }
 
@@ -106,13 +107,13 @@ class Game extends Component {
 
   checkIfCollidePadY = () => {
     return (this.state.pointTop > 518
-      && this.state.pointTop <= 521
+      && this.state.pointTop <= 525
       && this.state.pointLeft + 10 > this.state.xLeft - 30
       && this.state.pointLeft - 10 < this.state.xLeft + 30)
   }
 
   moovingBall = () => {
-    const speed = 100 * this.interval / 1000
+    const speed = 1.5
     if (this.isBallMoving) {
       if (this.goRight) {
         // eslint-disable-next-line 
@@ -147,7 +148,12 @@ class Game extends Component {
         this.goRight = true
         this.life=this.life-1
       }
-    } else this.setState({ pointTop: 521, pointLeft: this.state.xLeft + 20 })
+    } else this.setState({ pointTop: 518, pointLeft: this.state.xLeft + 20 })
+    if (this.state.timer<8){
+      this.setState({timer: this.state.timer+1})
+    } else {
+      this.setState({timer: 0})
+    }
     setTimeout(this.moovingBall, this.interval)
   }
 
@@ -190,6 +196,10 @@ class Game extends Component {
     this.movePad()
     this.MouvBartX()
     // this.falling()
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()|| this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
   }
 
 
