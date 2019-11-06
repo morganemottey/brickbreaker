@@ -5,6 +5,8 @@ import Bricks from '../components/Bricks';
 import Pad from '../components/Pad';
 import Bonus from '../components/Bonus';
 import MoveBart from '../components/MoveBart'
+import Popuploose from '../components/Popuploose';
+import Popupwin from '../components/Popupwin';
 // import Malus from '../components/Malus'
 
 
@@ -143,6 +145,7 @@ class Game extends Component {
         this.goDown = false
         this.counterBall = 0
         this.goRight = true
+        this.life=this.life-1
       }
     } else this.setState({ pointTop: 521, pointLeft: this.state.xLeft + 20 })
     setTimeout(this.moovingBall, this.interval)
@@ -194,6 +197,8 @@ class Game extends Component {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
       <div className="Game">
+        {this.life===0 && <Popuploose/>}
+        {this.state.brickWall.length===0 && <Popupwin/>}
         <div className="lifeBar">
           <div className={this.life>=3 ? "life" : "noLife"}></div>
           <div className={this.life>=2 ? "life" : "noLife"}></div>
