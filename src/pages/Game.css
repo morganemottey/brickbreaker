@@ -1,14 +1,42 @@
 body {
     background-color: #2a6171;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .Game {
-    margin: 0 auto;
+    margin: 0;
     border: 1px #75cac3 solid;
     width: 375px;
     height: 667px;
-    transform: scale(0.9);
-    margin: 0 auto;
+    transform: scale(0.80);
 }
+
+.lifeBar{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: -30px;
+    left: 295px;
+    width: 80px;
+}
+
+.life{
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(white, #9198e5);
+    border: 1px #9198e5 solid;
+    border-radius: 50%;
+}
+
+.noLife{
+    width: 18px;
+    height: 18px;
+    /* background: radial-gradient(white, #9198e5); */
+    border: 1px #9198e5 solid;
+    border-radius: 50%;
+}
+
 
 
