@@ -69,7 +69,7 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    if (Math.ceil(Math.random() * 7) === 7 && !this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
+    if (Math.ceil(Math.random() * 1) === 1) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
@@ -195,6 +195,12 @@ class Game extends Component {
   // setTimeout(this.falling, 1000)
   // }
 
+  isBonusCollide=(top, left)=>{
+    if (top > 472
+      && top < 474
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) this.padWidth=150;
+  }
 
   componentDidMount() {
     this.moovingBall()
@@ -206,7 +212,6 @@ class Game extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()|| this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
   }
-
 
   render() {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
@@ -238,12 +243,13 @@ class Game extends Component {
               <Bonus
                 top={item.top}
                 left={item.left + 10}
-                key={item.top + '-' + item.left} />
+                key={item.top + '-' + item.left} 
+                callback={this.isBonusCollide}/>
             )
           }
           )}
           <Point left={pointLeft} top={pointTop} move={this.isBallMoving} />
-          <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div>
+          {/* <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div> */}
           <Pad left={xLeft} width={this.padWidth}/>
         </div>
       </div>
