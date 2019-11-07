@@ -105,10 +105,10 @@ class Game extends Component {
   }
 
   checkIfCollidePadY = () => {
-    return (this.state.pointTop > 518
-      && this.state.pointTop <= 521
-      && this.state.pointLeft + 10 > this.state.xLeft - 30
-      && this.state.pointLeft - 10 < this.state.xLeft + 30)
+    return (this.state.pointTop > 472
+      // && this.state.pointTop <= 521
+      && this.state.pointLeft + 10 > this.state.xLeft - 60
+      && this.state.pointLeft - 10 < this.state.xLeft + 60)
   }
 
   moovingBall = () => {
@@ -147,7 +147,7 @@ class Game extends Component {
         this.goRight = true
         this.life=this.life-1
       }
-    } else this.setState({ pointTop: 521, pointLeft: this.state.xLeft + 20 })
+    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft + 50 })
     setTimeout(this.moovingBall, this.interval)
   }
 
