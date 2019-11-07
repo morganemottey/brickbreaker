@@ -63,6 +63,7 @@ class Game extends Component {
           return item
         })
     })
+    
   }
 
   getBonus = () => {
