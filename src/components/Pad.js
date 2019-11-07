@@ -3,7 +3,7 @@ import './Pad.css';
 
 const Pad = (props) =>  (
     <div className="widthTab"
-    style={{ left: `${props.left}px` }}>
+    style={{ left: `${props.left}px` ,width:`${props.width}px`}}>
         <div className="TabBarre">
         </div>
     </div>

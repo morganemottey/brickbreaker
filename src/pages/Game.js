@@ -19,6 +19,7 @@ class Game extends Component {
     this.isBallMoving = false;
     this.counterBall = 0;
     this.life=3;
+    this.padWidth=100;
     this.state = {
       bartDepart: 0,
       // malusTop : -35,
@@ -35,8 +36,9 @@ class Game extends Component {
 
   movePad = () => {
     document.addEventListener('touchstart', event => {
+      if ((event.touches[0].pageX-this.padWidth/2 > 2) && (event.touches[0].pageX-this.padWidth/2 < 373-this.padWidth))
       this.setState({
-        xLeft: Math.ceil(event.touches[0].pageX)
+        xLeft: Math.ceil(event.touches[0].pageX-this.padWidth/2)
       })
       if (!this.isBallMoving && this.counterBall === 1) {
         this.isBallMoving = true
@@ -45,9 +47,9 @@ class Game extends Component {
       }
     }, false);
     document.addEventListener('touchmove', event => {
-      if ((this.state.xLeft > 0) && (this.state.xLeft < 315))
+      if ((this.state.xLeft > 2) && (this.state.xLeft < 373-this.padWidth))
         this.setState({
-          xLeft: Math.ceil(event.touches[0].pageX)
+          xLeft: Math.ceil(event.touches[0].pageX-this.padWidth/2)
         })
     }, false);
 
@@ -67,7 +69,7 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    if (Math.ceil(Math.random() * 5) === 5 && !this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
+    if (Math.ceil(Math.random() * 7) === 7 && !this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
@@ -108,9 +110,9 @@ class Game extends Component {
 
   checkIfCollidePadY = () => {
     return (this.state.pointTop > 472
-      // && this.state.pointTop <= 521
-      && this.state.pointLeft + 10 > this.state.xLeft - 60
-      && this.state.pointLeft - 10 < this.state.xLeft + 60)
+      && this.state.pointTop < 474
+      && this.state.pointLeft + 10 > this.state.xLeft
+      && this.state.pointLeft - 10 < this.state.xLeft + this.padWidth)
   }
 
   moovingBall = () => {
@@ -125,7 +127,7 @@ class Game extends Component {
       }
       if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
       ) {
-        this.getBonus()
+        this.getBonus() 
         this.deleteBricks()
         this.goRight = !this.goRight
       }
@@ -149,12 +151,14 @@ class Game extends Component {
         this.goRight = true
         this.life=this.life-1
       }
-    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft + 50 })
+    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft-10 + this.padWidth/2 })
+
     if (this.state.timer<8){
       this.setState({timer: this.state.timer+1})
     } else {
       this.setState({timer: 0})
     }
+
     setTimeout(this.moovingBall, this.interval)
   }
 
@@ -239,7 +243,8 @@ class Game extends Component {
           }
           )}
           <Point left={pointLeft} top={pointTop} move={this.isBallMoving} />
-          <Pad left={xLeft} />
+          <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div>
+          <Pad left={xLeft} width={this.padWidth}/>
         </div>
       </div>
     );
@@ -247,3 +252,10 @@ class Game extends Component {
 }
 
 export default Game;
+
+// checkIfCollidePadY = () => {
+//   return (this.state.pointTop > 472
+//     && this.state.pointTop <= 474
+//     && this.state.pointLeft + 10 > this.state.xLeft - 60
+//     && this.state.pointLeft - 10 < this.state.xLeft + 60)
+// }
