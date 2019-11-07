@@ -1,11 +1,11 @@
 .titleHome {
     font-family: 'Simpsonfont';
     text-align: center;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 h1{
-    color: black;
+    color: rgb(255, 223, 42);
     font-size: 2rem;
 }
 
