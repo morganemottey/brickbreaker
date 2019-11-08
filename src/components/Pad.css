@@ -1,8 +1,8 @@
 /* Style for Pad */
 .widthTab {
-    width: 120px;
     position: absolute;
     bottom: 65px;  
+    transition: all linear 25ms;
 }
 .TabBarre {
 
