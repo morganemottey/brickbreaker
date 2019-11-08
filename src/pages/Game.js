@@ -205,6 +205,11 @@ class Game extends Component {
     setTimeout(()=>this.padWidth=100, 6000)
   }
 
+  getRestart = () => {
+    this.life = 3
+    this.setState({brickWall:this.getBrickWall(), bonus:[]})
+  }
+
   componentDidMount() {
     this.moovingBall()
     this.movePad()
@@ -261,10 +266,3 @@ class Game extends Component {
 }
 
 export default Game;
-
-// checkIfCollidePadY = () => {
-//   return (this.state.pointTop > 472
-//     && this.state.pointTop <= 474
-//     && this.state.pointLeft + 10 > this.state.xLeft - 60
-//     && this.state.pointLeft - 10 < this.state.xLeft + 60)
-// }
