@@ -205,8 +205,8 @@ class Game extends Component {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
       <div className="Game">
-        {this.life === 0 && <Popuploose />}
-        {this.state.brickWall.length === 0 && <Popupwin />}
+       {this.life===0 && <Popuploose restart={this.getRestart}/>}
+       {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
         <div className="lifeBar">
           <div className={this.life >= 3 ? "life" : "noLife"}></div>
           <div className={this.life >= 2 ? "life" : "noLife"}></div>
