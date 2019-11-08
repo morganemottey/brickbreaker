@@ -7,6 +7,7 @@ import Bonus from '../components/Bonus';
 import MoveBart from '../components/MoveBart'
 import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
+import brickUrl from '../musique/brick.mp3'
 // import Malus from '../components/Malus'
 
 
@@ -29,8 +30,12 @@ class Game extends Component {
       brickWall: this.getBrickWall(),
       xLeft: 0,
       bonus: [],
-      timer: 0
+      timer: 0,
+      getBonus: false,
+      isPlaying: false,
+
     }
+    this.brick = new Audio(brickUrl);
   }
 
   movePad = () => {
@@ -54,15 +59,20 @@ class Game extends Component {
 
   }
 
+  manageAudioBricks = () => {
+    this.brick.play()
+}
+
   deleteBricks = () => {
+    const newBrickWall = this.state.brickWall
+      .filter(item => {
+        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
+      })
+     if(newBrickWall.length < this.state.brickWall.length){
+      {this.manageAudioBricks()}
+     }
     this.setState({
-      brickWall: this.state.brickWall
-        .filter(item => {
-          return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
-        })
-        .map(item => {
-          return item
-        })
+      brickWall: newBrickWall
     })
 
   }
@@ -182,14 +192,6 @@ class Game extends Component {
     }
     setTimeout(this.MouvBartX, 100)
   }
-
-  // falling = () => {
-  // this.setState({
-  //   malusTop : this.state.malusTop + 10,
-  //   malusLeft : this.state.malusLeft,
-  // })
-  // setTimeout(this.falling, 1000)
-  // }
 
   isBonusCollide = (top, left) => {
     if (top > 472
