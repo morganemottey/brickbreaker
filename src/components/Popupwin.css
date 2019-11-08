@@ -7,19 +7,18 @@
     text-align: center;
 }
 
-.contenu, .looser {
-    color: white;
-}
-
 .button{
     font-family: 'Simpsonfont';
     margin: 15% 5% 5% 5%;;
-    padding: 2.5%;
+    padding: 1.5%;
     font-size: 1rem;
-    background: white;
+    background: black;
+    color: white;
+    border: black;
     border-radius: 50px;
 }
 
 .looser1{
-    color: black;
+    font-family: 'Simpsonfont';
+    font-size: 2.5rem;
 }

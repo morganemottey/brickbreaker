@@ -14,8 +14,12 @@
 .button{
     font-family: 'Simpsonfont';
     margin: 15% 5% 5% 5%;;
-    padding: 2.5%;
+    padding: 1.5%;
     font-size: 1rem;
     background: white;
     border-radius: 50px;
+}
+
+.looser{
+    font-family: 'Simpsonfont';
 }
