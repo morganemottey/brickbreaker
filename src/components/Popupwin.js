@@ -24,6 +24,7 @@ class Popupwin extends React.Component {
     }
     
     render () {
+      const {restart} = this.props
       return (
         <div>
           {/* <button onClick={this.handleOpenModal}>Open Win</button> */}
@@ -37,8 +38,8 @@ class Popupwin extends React.Component {
                 <h1 className="looser1">You kicked my ass!</h1>
                 <img style={{width: "100%", height: "100%"}} src={barthomer} alt='#'/>
                     <div className="buttons">
-                        <button className="button"><Link to ="/Game">RESTART</Link></button>
-                        <button className="button"><Link to ="/Homepage">HOME PAGE</Link></button>
+                       <button className="button" onClick={restart}>RESTART</button>
+                       <button className="button"><Link to ="/">HOME PAGE</Link></button>
                     </div>
                 </div>
           </ReactModal>
