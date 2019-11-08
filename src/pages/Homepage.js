@@ -3,7 +3,6 @@ import './Homepage.css';
 import Parameters from '../components/Parameters';
 import { Link } from 'react-router-dom';
 
-
 class Homepage extends Component {
  
     render() {

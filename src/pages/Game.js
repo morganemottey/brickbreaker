@@ -7,6 +7,7 @@ import Bonus from '../components/Bonus';
 import MoveBart from '../components/MoveBart'
 import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
+import brickUrl from '../musique/brick.mp3'
 // import Malus from '../components/Malus'
 
 
@@ -18,7 +19,7 @@ class Game extends Component {
     this.goDown = false;
     this.isBallMoving = false;
     this.counterBall = 0;
-    this.life=3;
+    this.life = 3;
     this.state = {
       bartDepart: 0,
       // malusTop : -35,
@@ -29,7 +30,9 @@ class Game extends Component {
       xLeft: 0,
       bonus: [],
       getBonus: false,
+      isPlaying: false,
     }
+    this.brick = new Audio(brickUrl);
   }
 
   movePad = () => {
@@ -52,15 +55,20 @@ class Game extends Component {
 
   }
 
+  manageAudioBricks = () => {
+    this.brick.play()
+}
+
   deleteBricks = () => {
+    const newBrickWall = this.state.brickWall
+      .filter(item => {
+        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
+      })
+     if(newBrickWall.length < this.state.brickWall.length){
+      {this.manageAudioBricks()}
+     }
     this.setState({
-      brickWall: this.state.brickWall
-        .filter(item => {
-          return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
-        })
-        .map(item => {
-          return item
-        })
+      brickWall: newBrickWall
     })
   }
 
@@ -105,10 +113,10 @@ class Game extends Component {
   }
 
   checkIfCollidePadY = () => {
-    return (this.state.pointTop > 518
-      && this.state.pointTop <= 521
-      && this.state.pointLeft + 10 > this.state.xLeft - 30
-      && this.state.pointLeft - 10 < this.state.xLeft + 30)
+    return (this.state.pointTop > 472
+      // && this.state.pointTop <= 521
+      && this.state.pointLeft + 10 > this.state.xLeft - 60
+      && this.state.pointLeft - 10 < this.state.xLeft + 60)
   }
 
   moovingBall = () => {
@@ -145,9 +153,9 @@ class Game extends Component {
         this.goDown = false
         this.counterBall = 0
         this.goRight = true
-        this.life=this.life-1
+        this.life = this.life - 1
       }
-    } else this.setState({ pointTop: 521, pointLeft: this.state.xLeft + 20 })
+    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft + 50 })
     setTimeout(this.moovingBall, this.interval)
   }
 
@@ -202,12 +210,17 @@ class Game extends Component {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
       <div className="Game">
+<<<<<<< HEAD
         {this.life===0 && <Popuploose restart={this.getRestart}/>}
         {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
+=======
+        {this.life === 0 && <Popuploose />}
+        {this.state.brickWall.length === 0 && <Popupwin />}
+>>>>>>> 0cfe872ae0dcd34c5b23ec66ad23598eab69547d
         <div className="lifeBar">
-          <div className={this.life>=3 ? "life" : "noLife"}></div>
-          <div className={this.life>=2 ? "life" : "noLife"}></div>
-          <div className={this.life>=1 ? "life" : "noLife"}></div>
+          <div className={this.life >= 3 ? "life" : "noLife"}></div>
+          <div className={this.life >= 2 ? "life" : "noLife"}></div>
+          <div className={this.life >= 1 ? "life" : "noLife"}></div>
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />
