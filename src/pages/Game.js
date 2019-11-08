@@ -18,8 +18,8 @@ class Game extends Component {
     this.goDown = false;
     this.isBallMoving = false;
     this.counterBall = 0;
-    this.life=3;
-    this.padWidth=100;
+    this.life = 3;
+    this.padWidth = 100;
     this.state = {
       bartDepart: 0,
       // malusTop : -35,
@@ -29,17 +29,16 @@ class Game extends Component {
       brickWall: this.getBrickWall(),
       xLeft: 0,
       bonus: [],
-      getBonus: false,
-      timer:0
+      timer: 0
     }
   }
 
   movePad = () => {
     document.addEventListener('touchstart', event => {
-      if ((event.touches[0].pageX-this.padWidth/2 > 2) && (event.touches[0].pageX-this.padWidth/2 < 373-this.padWidth))
-      this.setState({
-        xLeft: Math.ceil(event.touches[0].pageX-this.padWidth/2)
-      })
+      if ((event.touches[0].pageX - this.padWidth / 2 > 2) && (event.touches[0].pageX - this.padWidth / 2 < 373 - this.padWidth))
+        this.setState({
+          xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
+        })
       if (!this.isBallMoving && this.counterBall === 1) {
         this.isBallMoving = true
       } else if (!this.isBallMoving) {
@@ -47,9 +46,9 @@ class Game extends Component {
       }
     }, false);
     document.addEventListener('touchmove', event => {
-      if ((this.state.xLeft > 2) && (this.state.xLeft < 373-this.padWidth))
+      if ((this.state.xLeft > 2) && (this.state.xLeft < 373 - this.padWidth))
         this.setState({
-          xLeft: Math.ceil(event.touches[0].pageX-this.padWidth/2)
+          xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
         })
     }, false);
 
@@ -65,11 +64,11 @@ class Game extends Component {
           return item
         })
     })
-    
+
   }
 
   getBonus = () => {
-    if (Math.ceil(Math.random() * 1) === 1) {
+    if (Math.ceil(Math.random() * 8) === 8) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
@@ -78,10 +77,7 @@ class Game extends Component {
           return item
         })
       newDonutsTab.push(...this.state.bonus)
-      this.setState({ bonus: newDonutsTab, getBonus: true })
-    }
-    else if (this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
-      this.setState({ getBonus: false })
+      this.setState({ bonus: newDonutsTab})
     }
   }
 
@@ -127,7 +123,7 @@ class Game extends Component {
       }
       if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
       ) {
-        this.getBonus() 
+        this.getBonus()
         this.deleteBricks()
         this.goRight = !this.goRight
       }
@@ -149,14 +145,14 @@ class Game extends Component {
         this.goDown = false
         this.counterBall = 0
         this.goRight = true
-        this.life=this.life-1
+        this.life = this.life - 1
       }
-    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft-10 + this.padWidth/2 })
+    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft - 10 + this.padWidth / 2 })
 
-    if (this.state.timer<8){
-      this.setState({timer: this.state.timer+1})
+    if (this.state.timer < 8) {
+      this.setState({ timer: this.state.timer + 1 })
     } else {
-      this.setState({timer: 0})
+      this.setState({ timer: 0 })
     }
 
     setTimeout(this.moovingBall, this.interval)
@@ -195,11 +191,15 @@ class Game extends Component {
   // setTimeout(this.falling, 1000)
   // }
 
-  isBonusCollide=(top, left)=>{
+  isBonusCollide = (top, left) => {
     if (top > 472
       && top < 474
       && left + 10 > this.state.xLeft
-      && left - 10 < this.state.xLeft + this.padWidth) this.padWidth=150;
+      && left - 10 < this.state.xLeft + this.padWidth) {
+      this.padWidth = 150;
+      this.setState({bonus:[]})
+    }
+    setTimeout(()=>this.padWidth=100, 6000)
   }
 
   componentDidMount() {
@@ -210,19 +210,19 @@ class Game extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()|| this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
+    return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX() || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
   }
 
   render() {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
       <div className="Game">
-        {this.life===0 && <Popuploose/>}
-        {this.state.brickWall.length===0 && <Popupwin/>}
+        {this.life === 0 && <Popuploose />}
+        {this.state.brickWall.length === 0 && <Popupwin />}
         <div className="lifeBar">
-          <div className={this.life>=3 ? "life" : "noLife"}></div>
-          <div className={this.life>=2 ? "life" : "noLife"}></div>
-          <div className={this.life>=1 ? "life" : "noLife"}></div>
+          <div className={this.life >= 3 ? "life" : "noLife"}></div>
+          <div className={this.life >= 2 ? "life" : "noLife"}></div>
+          <div className={this.life >= 1 ? "life" : "noLife"}></div>
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />
@@ -243,14 +243,14 @@ class Game extends Component {
               <Bonus
                 top={item.top}
                 left={item.left + 10}
-                key={item.top + '-' + item.left} 
-                callback={this.isBonusCollide}/>
+                key={item.top + '-' + item.left}
+                callback={this.isBonusCollide} />
             )
           }
           )}
           <Point left={pointLeft} top={pointTop} move={this.isBallMoving} />
           {/* <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div> */}
-          <Pad left={xLeft} width={this.padWidth}/>
+          <Pad left={xLeft} width={this.padWidth} />
         </div>
       </div>
     );
