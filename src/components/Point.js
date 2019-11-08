@@ -19,7 +19,7 @@ class Point extends Component {
         const {left, top, move} = this.props
 
         return(
-            <div style={{...style, left:left, top:top, transition: move ? 'all linear 100ms' : 'none' }}/>
+            <div style={{...style, left:left, top:top, transition: move ? 'all linear 25ms' : 'none' }}/>
         )
     }
 

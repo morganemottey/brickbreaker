@@ -25,7 +25,8 @@ class Bonus extends Component {
     }
 
     componentDidMount=()=>{
-        this.falling()
+        this.falling();
+        // () => this.props.callback(this.state.top, this.props.left)
     }
 
     render(){
@@ -33,7 +34,10 @@ class Bonus extends Component {
         const {top, display}=this.state
         return(
             <>
-                <img style={{...this.style, top:top , left:left, display:display}} src={donuts} alt="Donuts" />
+                <img style={{...this.style, top:top , left:left, display:display}}
+                    src={donuts}
+                    alt="Donuts"
+                    callback={this.props.callback(top,left)}/>
             </>
         )
     }
