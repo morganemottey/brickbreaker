@@ -205,6 +205,11 @@ class Game extends Component {
     setTimeout(()=>this.padWidth=100, 6000)
   }
 
+  getRestart = () => {
+    this.life = 3
+    this.setState({brickWall:this.getBrickWall(), bonus:[]})
+  }
+
   componentDidMount() {
     this.moovingBall()
     this.movePad()
