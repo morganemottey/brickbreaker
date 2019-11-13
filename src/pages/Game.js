@@ -28,7 +28,7 @@ class Game extends Component {
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
-      xLeft: 0,
+      xLeft: 140,
       bonus: [],
       timer: 0,
       getBonus: false,
