@@ -165,48 +165,48 @@ class Game extends Component {
   }
 
   checkIfCollidePadY = () => {
-    if (this.state.pointTop > 472 && this.state.pointTop < 474){
-      if (this.state.pointLeft + 10 > (this.state.xLeft + this.padWidth*0)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.1)){
-          this.goRight=true;
-          this.speedX=-1.5;
-          this.speedY=1.5
+    if (this.state.pointTop > 472 && this.state.pointTop < 474) {
+      if (this.state.pointLeft + 10 > (this.state.xLeft + this.padWidth * 0)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 0.1)) {
+        this.goRight = true;
+        this.speedX = -1.5;
+        this.speedY = 1.5
       }
-      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.1)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.3)){
-          this.goRight=true;
-          this.speedX=-1;
-          this.speedY=2
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth * 0.1)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 0.3)) {
+        this.goRight = true;
+        this.speedX = -1;
+        this.speedY = 2
       }
-      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.30)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.45)){
-          this.goRight=true;
-          this.speedX=-0.5;
-          this.speedY=2.5
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth * 0.30)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 0.45)) {
+        this.goRight = true;
+        this.speedX = -0.5;
+        this.speedY = 2.5
       }
-      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.45)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.55)){
-          this.goRight=true;
-          this.speedX=0;
-          this.speedY=3
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth * 0.45)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 0.55)) {
+        this.goRight = true;
+        this.speedX = 0;
+        this.speedY = 3
       }
-      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.55)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.70)){
-          this.goRight=true;
-          this.speedX=0.5;
-          this.speedY=2.5
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth * 0.55)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 0.70)) {
+        this.goRight = true;
+        this.speedX = 0.5;
+        this.speedY = 2.5
       }
-      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.70)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.90)){
-          this.goRight=true;
-          this.speedX=1;
-          this.speedY=2
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth * 0.70)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 0.90)) {
+        this.goRight = true;
+        this.speedX = 1;
+        this.speedY = 2
       }
-      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.90)
-        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*1)){
-          this.goRight=true;
-          this.speedX=1.5;
-          this.speedY=1.5
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth * 0.90)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth * 1)) {
+        this.goRight = true;
+        this.speedX = 1.5;
+        this.speedY = 1.5
       }
     }
 
@@ -218,28 +218,21 @@ class Game extends Component {
 
   moovingBall = () => {
     if (this.isBallMoving) {
-      if (this.goRight) {
-        // eslint-disable-next-line 
-        this.setState({ pointLeft: this.state.pointLeft += this.speedX })
-      } else if (!this.goRight) {
-        // eslint-disable-next-line 
-        this.setState({ pointLeft: this.state.pointLeft -= this.speedX })
-      }
-      if (this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX()
+      this.checkIfCollidePadY()
+      this.setState(this.goRight ? { pointLeft: this.state.pointLeft += this.speedX } : { pointLeft: this.state.pointLeft -= this.speedX })
+      if (this.state.pointLeft > 355 || this.state.pointLeft < 0
       ) {
+        this.goRight = !this.goRight
+      } else if (this.checkIfCollideX()) {
         this.getBonus()
         this.deleteBricks()
         this.goRight = !this.goRight
       }
-      if (this.goDown) {
-        // eslint-disable-next-line 
-        this.setState({ pointTop: this.state.pointTop += this.speedY })
-      } else if (!this.goDown) {
-        // eslint-disable-next-line 
-        this.setState({ pointTop: this.state.pointTop -= this.speedY })
-      }
-      if (this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY()
+      this.setState(this.goDown ? { pointTop: this.state.pointTop += this.speedY } : { pointTop: this.state.pointTop -= this.speedY })
+      if (this.state.pointTop < 0 || this.checkIfCollidePadY()
       ) {
+        this.goDown = !this.goDown
+      } else if (this.checkIfCollideY()){
         this.getBonus()
         this.deleteBricks()
         this.goDown = !this.goDown
@@ -253,8 +246,8 @@ class Game extends Component {
       }
     } else {
       this.setState({ pointTop: 472, pointLeft: this.state.xLeft - 10 + this.padWidth / 2, })
-      this.speedX=1.5
-      this.speedY=1.5
+      this.speedX = 1.5
+      this.speedY = 1.5
     }
 
     if (this.state.timer < 8) {
