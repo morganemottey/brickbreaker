@@ -78,16 +78,23 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    if (Math.ceil(Math.random() * 6) === 6) {
+    if ((Math.ceil(Math.random() * 1) === 1) && (this.padWidth===100)) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
         })
-        .map(item => {
-          return item
-        })
       newDonutsTab.push(...this.state.bonus)
       this.setState({ bonus: newDonutsTab})
+    }
+  }
+
+  isBonusCollide = (top, left) => {
+    if (top > 472
+      && top <= 475
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) {
+        console.log('BONUS!');
+        this.padWidth=150;
     }
   }
 
@@ -165,6 +172,8 @@ class Game extends Component {
       this.setState({ timer: 0 })
     }
 
+    this.padWidth === 150 && setTimeout(()=>this.padWidth=100, 3000)
+
     setTimeout(this.moovingBall, this.interval)
   }
 
@@ -193,23 +202,16 @@ class Game extends Component {
     setTimeout(this.MouvBartX, 100)
   }
 
-  isBonusCollide = (top, left) => {
-    if (top > 472
-      && top < 474
-      && left + 10 > this.state.xLeft
-      && left - 10 < this.state.xLeft + this.padWidth) {
-      this.padWidth = 150;
-      this.setState({bonus:[]})
-      console.log('get Bonus')
-    }
-    setTimeout(()=>this.padWidth=100, 6000)
-  }
 
   componentDidMount() {
     this.moovingBall()
     this.movePad()
     this.MouvBartX()
     // this.falling()
+  }
+
+  componentWillUnmount(){
+    this.isBonusCollide()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
