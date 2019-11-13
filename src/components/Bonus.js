@@ -7,7 +7,7 @@ class Bonus extends Component {
         this.style={
             width:'50px',
             height:'50px',
-            position:'absolute'
+            position:'absolute',
         }
         this.state={
             top:this.props.top,
@@ -18,10 +18,12 @@ class Bonus extends Component {
     falling=()=>{
         if(this.state.top<587){
             this.setState({top: this.state.top+3})
+            this.props.callback(this.state.top,this.props.left)
+            && this.setState({display: 'none'})
         }else{
             this.setState({display: 'none'})
         }
-        setTimeout(this.falling, 15)
+        setTimeout(this.falling, 40)
     }
 
     componentDidMount=()=>{
@@ -37,7 +39,7 @@ class Bonus extends Component {
                 <img style={{...this.style, top:top , left:left, display:display}}
                     src={donuts}
                     alt="Donuts"
-                    callback={this.props.callback(top,left)}/>
+                    />
             </>
         )
     }
