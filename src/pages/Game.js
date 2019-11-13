@@ -9,6 +9,7 @@ import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
 import brickUrl from '../musique/brick.mp3'
 import Malus from '../components/Malus';
+import dunutsUrl from '../musique/donuts.mp3'
 
 
 class Game extends Component {
@@ -35,6 +36,7 @@ class Game extends Component {
 
     }
     this.brick = new Audio(brickUrl);
+    this.dunuts = new Audio(dunutsUrl);
   }
 
   movePad = () => {
@@ -74,6 +76,10 @@ class Game extends Component {
     this.brick.play()
   }
 
+  manageAudioDunuts = () => {
+    this.dunuts.play()
+  }
+
   deleteBricks = () => {
     const newBrickWall = this.state.brickWall
       .filter(item => {
@@ -105,6 +111,7 @@ class Game extends Component {
       && left + 10 > this.state.xLeft
       && left - 10 < this.state.xLeft + this.padWidth) {
       this.padWidth = 150;
+      this.manageAudioDunuts()
       return true
     }
   }
@@ -228,10 +235,10 @@ class Game extends Component {
     } else {
       this.setState({ bartDepart: this.state.bartDepart - 5 })
     }
-    if (this.state.bartDepart > 375 - 50)
+    if (this.state.bartDepart > 375 - 35)
       this.toRight = false;
 
-    else if (this.state.bartDepart < 0) {
+    else if (this.state.bartDepart < 35) {
       this.toRight = true
     }
     setTimeout(this.MouvBartX, 100)
