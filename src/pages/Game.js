@@ -223,7 +223,6 @@ class Game extends Component {
     this.moovingBall()
     this.movePad()
     this.MouvBartX()
-    // this.falling()
   }
 
   componentWillUnmount(){
@@ -247,9 +246,6 @@ class Game extends Component {
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />
-          {/* <Malus 
-          left = {malusLeft} 
-          top = {malusTop}/> */}
           {this.state.brickWall.map(item => {
             return (
               <Bricks
