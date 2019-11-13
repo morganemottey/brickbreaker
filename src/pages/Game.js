@@ -43,6 +43,7 @@ class Game extends Component {
         this.setState({
           xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
         })
+      // if - else if : Compteur pour déplacer la balle avant de l'envoyer
       if (!this.isBallMoving && this.counterBall === 1) {
         this.isBallMoving = true
       } else if (!this.isBallMoving) {
@@ -50,10 +51,21 @@ class Game extends Component {
       }
     }, false);
     document.addEventListener('touchmove', event => {
-      if ((this.state.xLeft > 2) && (this.state.xLeft < 373 - this.padWidth))
+      if ((this.state.xLeft > 2) && (this.state.xLeft < 373 - this.padWidth)) {
         this.setState({
           xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
         })
+      }
+      if (this.state.xLeft <= 2) {
+        this.setState({
+          xLeft: 3 
+        })
+      }
+      if (this.state.xLeft >= 373 - this.padWidth) {
+        this.setState({
+          xLeft: 372 - this.padWidth
+        })
+      }
     }, false);
 
   }
