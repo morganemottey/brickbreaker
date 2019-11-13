@@ -165,46 +165,51 @@ class Game extends Component {
   }
 
   checkIfCollidePadY = () => {
-    if (this.state.pointTop > 472
-      && this.state.pointTop < 474
-      && this.state.pointLeft + 10 > (this.state.xLeft + this.padWidth*0)
-      && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.2)){
-        this.goRight=true;
-        this.speedX=-2;
-        this.speedY=1
+    if (this.state.pointTop > 472 && this.state.pointTop < 474){
+      if (this.state.pointLeft + 10 > (this.state.xLeft + this.padWidth*0)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.1)){
+          this.goRight=true;
+          this.speedX=-1.5;
+          this.speedY=1.5
+      }
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.1)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.3)){
+          this.goRight=true;
+          this.speedX=-1;
+          this.speedY=2
+      }
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.30)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.45)){
+          this.goRight=true;
+          this.speedX=-0.5;
+          this.speedY=2.5
+      }
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.45)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.55)){
+          this.goRight=true;
+          this.speedX=0;
+          this.speedY=3
+      }
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.55)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.70)){
+          this.goRight=true;
+          this.speedX=0.5;
+          this.speedY=2.5
+      }
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.70)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.90)){
+          this.goRight=true;
+          this.speedX=1;
+          this.speedY=2
+      }
+      else if (this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.90)
+        && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*1)){
+          this.goRight=true;
+          this.speedX=1.5;
+          this.speedY=1.5
+      }
     }
-    if (this.state.pointTop > 472
-      && this.state.pointTop < 474
-      && this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.2)
-      && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.4)){
-        this.goRight=true;
-        this.speedX=-1.5;
-        this.speedY=1.5
-    }
-    if (this.state.pointTop > 472
-      && this.state.pointTop < 474
-      && this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.4)
-      && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.6)){
-        this.goRight=true;
-        this.speedX=0;
-        this.speedY=3
-    }
-    if (this.state.pointTop > 472
-      && this.state.pointTop < 474
-      && this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.6)
-      && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*0.8)){
-        this.goRight=true;
-        this.speedX=1.5;
-        this.speedY=1.5
-    }
-    if (this.state.pointTop > 472
-      && this.state.pointTop < 474
-      && this.state.pointLeft + 10 >= (this.state.xLeft + this.padWidth*0.8)
-      && this.state.pointLeft - 10 < (this.state.xLeft + this.padWidth*1)){
-        this.goRight=true;
-        this.speedX=2;
-        this.speedY=1
-    }
+
     return (this.state.pointTop > 472
       && this.state.pointTop < 474
       && this.state.pointLeft + 10 > this.state.xLeft
