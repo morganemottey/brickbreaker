@@ -7,7 +7,7 @@ import Bonus from '../components/Bonus';
 import MoveBart from '../components/MoveBart'
 import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
-// import Malus from '../components/Malus'
+import Malus from '../components/Malus'
 
 
 class Game extends Component {
@@ -21,8 +21,8 @@ class Game extends Component {
     this.life=3;
     this.state = {
       bartDepart: 0,
-      // malusTop : -35,
-      // malusLeft : this.bartDepart,
+      malusTop : -35,
+      malusLeft : this.bartDepart,
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
@@ -176,25 +176,27 @@ class Game extends Component {
     setTimeout(this.MouvBartX, 100)
   }
 
-  // falling = () => {
-  // this.setState({
-  //   malusTop : this.state.malusTop + 10,
-  //   malusLeft : this.state.malusLeft,
-  // })
-  // setTimeout(this.falling, 1000)
-  // }
-
+  falling = () => {
+  this.setState({
+  malusTop : this.state.malusTop + 10,
+  malusLeft : this.state.malusLeft,
+  })
+  setTimeout(this.falling, 1000)
+  }
+  
+  
 
   componentDidMount() {
     this.moovingBall()
     this.movePad()
     this.MouvBartX()
-    // this.falling()
+    this.falling()
+  
   }
 
 
   render() {
-    const { pointLeft, pointTop, xLeft, bartDepart } = this.state
+    const { pointLeft, pointTop, xLeft, bartDepart, malusLeft, malusTop } = this.state
     return (
       <div className="Game">
         {this.life===0 && <Popuploose/>}
@@ -205,10 +207,11 @@ class Game extends Component {
           <div className={this.life>=1 ? "life" : "noLife"}></div>
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
-          <MoveBart left={bartDepart} />
-          {/* <Malus 
+          <MoveBart left={bartDepart}
+                    right={bartDepart} />
+          <Malus 
           left = {malusLeft} 
-          top = {malusTop}/> */}
+          top = {malusTop}/>
           {this.state.brickWall.map(item => {
             return (
               <Bricks
