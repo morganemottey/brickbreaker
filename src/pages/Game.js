@@ -256,10 +256,6 @@ class Game extends Component {
     this.getMalus()
   }
 
-  componentWillUnmount() {
-    this.isBonusCollide()
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX() || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
   }
