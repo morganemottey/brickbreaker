@@ -1,17 +1,19 @@
 body {
-    background-color: #2a6171;
+    background: url("../images/background.jpg");
     width: 100vw;
-    /* height: 100vh;
-    overflow: hidden; */
     position: fixed;
 }
 
 .Game {
     margin: 0;
-    border: 1px #75cac3 solid;
     width: 375px;
     height: 667px;
     transform: scale(0.85);
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(0deg, rgba(255,255,255,0) 26%, rgba(252,252,252,0.6881127450980392) 60%, rgba(252,252,252,0) 90%);
+    background: -webkit-linear-gradient(0deg, rgba(255,255,255,0) 26%, rgba(252,252,252,0.6881127450980392) 60%, rgba(252,252,252,0) 90%);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 26%, rgba(252,252,252,0.6881127450980392) 60%, rgba(252,252,252,0) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#fcfcfc",GradientType=1);
 }
 
 .lifeBar{
@@ -23,20 +25,21 @@ body {
     width: 80px;
 }
 
-.life{
+.life, .noLife{
     width: 18px;
     height: 18px;
-    background: radial-gradient(white, #9198e5);
-    border: 1px #9198e5 solid;
-    border-radius: 50%;
 }
 
-.noLife{
-    width: 18px;
-    height: 18px;
-    /* background: radial-gradient(white, #9198e5); */
-    border: 1px #9198e5 solid;
-    border-radius: 50%;
+.life:before, .noLife:before {
+    content: '\2665';
+    font-size: 2em;}
+
+.life:before {
+    color: red;
+}
+.noLife:before {
+    color: black;
+    opacity: 0.4;
 }
 
 

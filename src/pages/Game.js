@@ -28,7 +28,7 @@ class Game extends Component {
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
-      xLeft: 0,
+      xLeft: 140,
       bonus: [],
       timer: 0,
       isPlaying: false,
@@ -214,6 +214,11 @@ class Game extends Component {
   }
 
 
+  getRestart = () => {
+    this.life = 3
+    this.setState({brickWall:this.getBrickWall(), bonus:[]})
+  }
+
   componentDidMount() {
     this.moovingBall()
     this.movePad()
@@ -274,10 +279,3 @@ class Game extends Component {
 }
 
 export default Game;
-
-// checkIfCollidePadY = () => {
-//   return (this.state.pointTop > 472
-//     && this.state.pointTop <= 474
-//     && this.state.pointLeft + 10 > this.state.xLeft - 60
-//     && this.state.pointLeft - 10 < this.state.xLeft + 60)
-// }
