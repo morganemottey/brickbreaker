@@ -111,6 +111,26 @@ class Game extends Component {
     }
   }
 
+  getMalus = () => {
+    //On change l'état au bout d'un temps random puis on rappelle la fonction. 
+    setTimeout(() => {
+      this.setState({
+        malus: [...this.state.malus, this.state.bartDepart]
+      })
+      this.getMalus();
+    }, Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000)
+  }
+
+  isMalusCollide = (top, left) => {
+    if (top > 472
+      && top <= 475
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) {
+      console.log('Malus');
+      return true
+    }
+  }
+
   generateIfCollideX = (left, top) => {
 
     return (this.state.pointTop + 17 > top && this.state.pointTop < top + 17 && this.state.pointLeft + 10 > left && this.state.pointLeft + 10 < left + 67)
@@ -215,16 +235,6 @@ class Game extends Component {
     setTimeout(this.MouvBartX, 100)
   }
 
-  getMalus = () => {
-    //On change l'état au bout d'un temps random puis on rappelle la fonction. 
-    setTimeout(() => {
-      this.setState({
-        malus: [...this.state.malus, this.state.bartDepart]
-      })
-      this.getMalus();
-    }, Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000)
-  }
-
   getRestart = () => {
     this.life = 3
     this.setState({ brickWall: this.getBrickWall(), bonus: [] })
@@ -281,7 +291,8 @@ class Game extends Component {
             return (
               <Malus
                 left={item}
-                key={item} />
+                key={item}
+                callback={this.isMalusCollide} />
             )
           }
           )}
