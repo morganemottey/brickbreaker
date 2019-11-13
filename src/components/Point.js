@@ -11,9 +11,10 @@ class Point extends Component {
         const style = {
             width: "20px",
             height: "20px",
-            background: `radial-gradient(white, #9198e5)`,
+            background: `radial-gradient(grey, black)`,
             borderRadius: "50%",
             position:'absolute',
+            boxShadow: '10px 10px 13px -2px rgba(31,31,31,0.35)',
             // transition: 'all linear 100ms'
         }
         const {left, top, move} = this.props
