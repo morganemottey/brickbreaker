@@ -5,12 +5,12 @@ class Malus extends Component {
     constructor(props){
         super(props)
         this.style={
-            width:'50px',
-            height:'50px',
+            width:'40px',
+            height:'70px',
             position:'absolute',
         }
         this.state={
-            top:this.props.top,
+            top:-35,
             display:'block'
         }
     }
@@ -18,8 +18,8 @@ class Malus extends Component {
     falling=()=>{
         if(this.state.top<587){
             this.setState({top: this.state.top+3})
-            this.props.callback(this.state.top,this.props.left)
-            && this.setState({display: 'none'})
+            // this.props.callback(this.state.top,this.props.left)
+            // && this.setState({display: 'none'})
         }else{
             this.setState({display: 'none'})
         }
