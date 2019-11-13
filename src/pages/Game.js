@@ -9,7 +9,6 @@ import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
 import brickUrl from '../musique/brick.mp3'
 import Malus from '../components/Malus';
-// import Malus from '../components/Malus'
 
 
 class Game extends Component {
@@ -22,10 +21,9 @@ class Game extends Component {
     this.counterBall = 0;
     this.life = 3;
     this.padWidth = 100;
+    this.malusOn = false;
     this.state = {
       bartDepart: 0,
-      // malusTop : -35,
-      // malusLeft : this.bartDepart,
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
@@ -112,13 +110,15 @@ class Game extends Component {
   }
 
   getMalus = () => {
-    //On change l'état au bout d'un temps random puis on rappelle la fonction. 
-    setTimeout(() => {
-      this.setState({
-        malus: [...this.state.malus, this.state.bartDepart]
-      })
-      this.getMalus();
-    }, Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000)
+    if (!this.malusOn) {
+      //On change l'état au bout d'un temps random puis on rappelle la fonction. 
+      setTimeout(() => {
+        this.setState({
+          malus: [...this.state.malus, this.state.bartDepart]
+        })
+        this.getMalus();
+      }, Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000)
+    }
   }
 
   isMalusCollide = (top, left) => {
@@ -127,6 +127,7 @@ class Game extends Component {
       && left + 10 > this.state.xLeft
       && left - 10 < this.state.xLeft + this.padWidth) {
       console.log('Malus');
+      this.malusOn = true;
       return true
     }
   }
@@ -206,6 +207,7 @@ class Game extends Component {
     }
 
     this.padWidth === 150 && setTimeout(() => this.padWidth = 100, 6000)
+    this.malusOn && setTimeout(() => this.malusOn = false, 6000)
 
     setTimeout(this.moovingBall, this.interval)
   }
@@ -258,7 +260,7 @@ class Game extends Component {
   render() {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
-      <div className="Game">
+      <div className="Game" style={{ transform: this.malusOn ? 'scale(0.85) scaleX(-1)' : 'scale(0.85)' }}>
         {this.life === 0 && <Popuploose restart={this.getRestart} />}
         {this.state.brickWall.length === 0 && <Popupwin restart={this.getRestart} />}
         <div className="lifeBar">
