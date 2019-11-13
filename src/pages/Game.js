@@ -95,6 +95,7 @@ class Game extends Component {
       && left - 10 < this.state.xLeft + this.padWidth) {
         console.log('BONUS!');
         this.padWidth=150;
+        return true
     }
   }
 
