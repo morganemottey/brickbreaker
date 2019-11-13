@@ -7,6 +7,7 @@ import Bonus from '../components/Bonus';
 import MoveBart from '../components/MoveBart'
 import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
+import Countdown from '../components/Countdown';
 import brickUrl from '../musique/brick.mp3'
 import dunutsUrl from '../musique/donuts.mp3'
 // import Malus from '../components/Malus'
@@ -33,7 +34,8 @@ class Game extends Component {
       bonus: [],
       timer: 0,
       isPlaying: false,
-
+      time : 61,
+      color: 'white',
     }
     this.brick = new Audio(brickUrl);
     this.dunuts = new Audio(dunutsUrl);
@@ -116,7 +118,6 @@ manageAudioDunuts = () => {
   }
 
   generateIfCollideX = (left, top) => {
-
     return (this.state.pointTop + 17 > top && this.state.pointTop < top + 17 && this.state.pointLeft + 10 > left && this.state.pointLeft +10 < left + 67)
   }
 
@@ -219,17 +220,30 @@ manageAudioDunuts = () => {
     setTimeout(this.MouvBartX, 100)
   }
 
-
   getRestart = () => {
     this.life = 3
-    this.setState({brickWall:this.getBrickWall(), bonus:[]})
+    this.setState({brickWall:this.getBrickWall(), bonus:[], time: 61})
   }
+
+  countDown = () => {
+    if (this.props.counter === true){
+    if(this.state.time > 0){
+        this.setState({time: this.state.time - 1})
+    }
+    if(this.state.time <= 9){
+        this.setState({color: "red"})
+    }
+    if(this.state.time === 0){
+    }
+    setTimeout(this.countDown, 1000)
+  }
+}
 
   componentDidMount() {
     this.moovingBall()
     this.movePad()
     this.MouvBartX()
-    // this.falling()
+    this.countDown()
   }
 
   componentWillUnmount(){
@@ -244,12 +258,15 @@ manageAudioDunuts = () => {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
       <div className="Game">
-       {this.life===0 && <Popuploose restart={this.getRestart}/>}
+       {(this.life===0 || this.state.time === 0) && <Popuploose restart={this.getRestart}/>}
        {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
-        <div className="lifeBar">
-          <div className={this.life >= 3 ? "life" : "noLife"}></div>
-          <div className={this.life >= 2 ? "life" : "noLife"}></div>
-          <div className={this.life >= 1 ? "life" : "noLife"}></div>
+        <div className="header">
+          <div className="lifeBar">
+            <div className={this.life >= 3 ? "life" : "noLife"}></div>
+            <div className={this.life >= 2 ? "life" : "noLife"}></div>
+            <div className={this.life >= 1 ? "life" : "noLife"}></div>
+          </div>
+          {this.props.counter === true && <Countdown time={this.state.time} color={this.state.color}></Countdown>}
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />

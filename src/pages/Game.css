@@ -16,12 +16,17 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#fcfcfc",GradientType=1);
 }
 
-.lifeBar{
+.header {
     position: absolute;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    top: -30px;
-    left: 295px;
+    top:-50px
+}
+
+.lifeBar{
+    display: flex;
+    justify-content: space-around;
     width: 80px;
 }
 
