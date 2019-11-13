@@ -204,10 +204,10 @@ class Game extends Component {
     } else {
       this.setState({ bartDepart: this.state.bartDepart - 5 })
     }
-    if (this.state.bartDepart > 375 - 50)
+    if (this.state.bartDepart > 375 -35)
       this.toRight = false;
 
-    else if (this.state.bartDepart < 0) {
+    else if (this.state.bartDepart < 35) {
       this.toRight = true
     }
     setTimeout(this.MouvBartX, 100)
