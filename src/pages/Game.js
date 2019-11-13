@@ -147,7 +147,7 @@ class Game extends Component {
   }
 
   generateIfCollideY = (left, top) => {
-    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 7 > left && this.state.pointLeft + 7 < left + 64)
+    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 10 > left && this.state.pointLeft + 10 < left + 64)
   }
 
   checkIfCollideX = () => {
