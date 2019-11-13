@@ -8,6 +8,7 @@ import MoveBart from '../components/MoveBart'
 import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
 import brickUrl from '../musique/brick.mp3'
+import dunutsUrl from '../musique/donuts.mp3'
 // import Malus from '../components/Malus'
 
 
@@ -35,6 +36,7 @@ class Game extends Component {
 
     }
     this.brick = new Audio(brickUrl);
+    this.dunuts = new Audio(dunutsUrl);
   }
 
   movePad = () => {
@@ -73,6 +75,9 @@ class Game extends Component {
   manageAudioBricks = () => {
     this.brick.play()
 }
+manageAudioDunuts = () => {
+  this.dunuts.play()
+}
 
   deleteBricks = () => {
     const newBrickWall = this.state.brickWall
@@ -105,6 +110,7 @@ class Game extends Component {
       && left + 10 > this.state.xLeft
       && left - 10 < this.state.xLeft + this.padWidth) {
         this.padWidth=150;
+        this.manageAudioDunuts()
         return true
     }
   }
