@@ -77,7 +77,7 @@ class Game extends Component {
   deleteBricks = () => {
     const newBrickWall = this.state.brickWall
       .filter(item => {
-        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
+        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 10 > item.left && this.state.pointLeft +10 < item.left + 67)
       })
      if(newBrickWall.length < this.state.brickWall.length){
       this.manageAudioBricks()
@@ -92,7 +92,7 @@ class Game extends Component {
     if ((Math.ceil(Math.random() * 6) === 6) && (this.padWidth===100)) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
-          return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
+          return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
         })
       newDonutsTab.push(...this.state.bonus)
       this.setState({ bonus: newDonutsTab })
@@ -111,11 +111,11 @@ class Game extends Component {
 
   generateIfCollideX = (left, top) => {
 
-    return (this.state.pointTop + 17 > top && this.state.pointTop < top + 7 && this.state.pointLeft + 20 > left && this.state.pointLeft < left + 67)
+    return (this.state.pointTop + 17 > top && this.state.pointTop < top + 17 && this.state.pointLeft + 10 > left && this.state.pointLeft +10 < left + 67)
   }
 
   generateIfCollideY = (left, top) => {
-    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 10 && this.state.pointLeft + 17 > left && this.state.pointLeft < left + 64)
+    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 7 > left && this.state.pointLeft +7 < left + 64)
   }
 
   checkIfCollideX = () => {
