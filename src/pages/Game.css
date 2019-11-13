@@ -8,7 +8,7 @@ body {
     margin: 0;
     width: 375px;
     height: 667px;
-    transition: all linear 100ms;
+    transition: all linear 400ms;
     background: rgb(255,255,255);
     background: -moz-linear-gradient(0deg, rgba(255,255,255,0) 26%, rgba(252,252,252,0.6881127450980392) 60%, rgba(252,252,252,0) 90%);
     background: -webkit-linear-gradient(0deg, rgba(255,255,255,0) 26%, rgba(252,252,252,0.6881127450980392) 60%, rgba(252,252,252,0) 90%);

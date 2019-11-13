@@ -23,7 +23,7 @@ class Malus extends Component {
         }else{
             this.setState({display: 'none'})
         }
-        setTimeout(this.falling, 40)
+        setTimeout(this.falling, 10)
     }
 
     componentDidMount=()=>{
