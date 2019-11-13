@@ -31,7 +31,6 @@ class Game extends Component {
       xLeft: 0,
       bonus: [],
       timer: 0,
-      getBonus: false,
       isPlaying: false,
 
     }
@@ -78,13 +77,13 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    if ((Math.ceil(Math.random() * 1) === 1) && (this.padWidth===100)) {
+    if ((Math.ceil(Math.random() * 6) === 6) && (this.padWidth===100)) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
         })
       newDonutsTab.push(...this.state.bonus)
-      this.setState({ bonus: newDonutsTab})
+      this.setState({ bonus: newDonutsTab })
     }
   }
 
@@ -93,7 +92,6 @@ class Game extends Component {
       && top <= 475
       && left + 10 > this.state.xLeft
       && left - 10 < this.state.xLeft + this.padWidth) {
-        console.log('BONUS!');
         this.padWidth=150;
         return true
     }
@@ -173,7 +171,7 @@ class Game extends Component {
       this.setState({ timer: 0 })
     }
 
-    this.padWidth === 150 && setTimeout(()=>this.padWidth=100, 3000)
+    this.padWidth === 150 && setTimeout(()=>this.padWidth=100, 6000)
 
     setTimeout(this.moovingBall, this.interval)
   }
