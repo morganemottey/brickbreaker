@@ -23,7 +23,7 @@ class Bonus extends Component {
         }else{
             this.setState({display: 'none'})
         }
-        setTimeout(this.falling, 15)
+        setTimeout(this.falling, 40)
     }
 
     componentDidMount=()=>{

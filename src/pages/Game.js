@@ -80,7 +80,7 @@ class Game extends Component {
         return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
       })
      if(newBrickWall.length < this.state.brickWall.length){
-      {this.manageAudioBricks()}
+      this.manageAudioBricks()
      }
     this.setState({
       brickWall: newBrickWall
