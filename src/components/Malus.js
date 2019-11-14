@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import duff from '../images/Duff.png'
+import bart from '../images/bart_fall.png'
 
 class Malus extends Component {
     constructor(props){
@@ -7,8 +8,10 @@ class Malus extends Component {
         this.style={
             width:'40px',
             height:'70px',
+            objectFit: 'contain',
             position:'absolute',
         }
+        this.endGame = false;
         this.state={
             top:-35,
             display:'block'
@@ -36,8 +39,8 @@ class Malus extends Component {
         return(
             <>
                 <img style={{...this.style, top:top , left:left, display:display}}
-                    src={duff}
-                    alt="Duff"
+                    src={this.endGame ? bart : duff}
+                    alt={this.endGame ? "Bart" : 'Duff'}
                     />
             </>
         )

@@ -271,11 +271,11 @@ class Game extends Component {
 
   getBrickWall = () => {
     const brick = [];
-    for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < 5; j++) {
-        brick.push({ top: i * 25, left: j * 77 })
-      }
-    }
+    // for (let i = 0; i < 6; i++) {
+    //   for (let j = 0; j < 5; j++) {
+    //     brick.push({ top: i * 25, left: j * 77 })
+    //   }
+    brick.push({top : 0 , left : 0}) //For demo
     return brick;
   };
 
