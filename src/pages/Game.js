@@ -85,7 +85,7 @@ class Game extends Component {
   deleteBricks = () => {
     const newBrickWall = this.state.brickWall
       .filter(item => {
-        return !(this.state.pointTop + 20 >= item.top && this.state.pointTop <= item.top + 20 && this.state.pointLeft + 10 >= item.left && this.state.pointLeft + 10 <= item.left + 67)
+        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
       })
     if (newBrickWall.length < this.state.brickWall.length) {
       this.manageAudioBricks()
@@ -97,7 +97,7 @@ class Game extends Component {
   }
 
   getBonus = () => {
-    if ((Math.ceil(Math.random() * 6) === 6) && (this.padWidth === 100)) {
+    if ((Math.ceil(Math.random() * 9) === 6) && (this.padWidth === 100)) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
@@ -142,12 +142,12 @@ class Game extends Component {
   }
 
   generateIfCollideX = (left, top) => {
-
-    return (this.state.pointTop + 17 > top && this.state.pointTop < top + 17 && this.state.pointLeft + 10 > left && this.state.pointLeft + 10 < left + 67)
+    // 10 correspond à la moitié de la balle, 2.5 à la moitié du espace vertical, 5 à la moitié d'un espace horizontal
+    return (this.state.pointTop + 10 > top -2.5 && this.state.pointTop + 10 < top + 22.5 && this.state.pointLeft + 20 > left && this.state.pointLeft < left + 67)
   }
 
   generateIfCollideY = (left, top) => {
-    return (this.state.pointTop + 20 >= top && this.state.pointTop <= top + 20 && this.state.pointLeft + 10 > left && this.state.pointLeft + 10 < left + 67)
+    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 10 > left -5 && this.state.pointLeft + 10 < left + 67 + 5)
   }
 
   checkIfCollideX = () => {
