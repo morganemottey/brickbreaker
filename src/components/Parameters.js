@@ -9,8 +9,9 @@ import { IoMdClose,
 import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
 import totoUrl from '../musique/toto.mp3'
 import Duff from '../images/Duff.png'
-import Donuts from '../images/Donuts.png'
-import homer_tab_clic from '../images/homer_tab_clic.png'
+import homer_donuts from '../images/homer_donuts.png'
+import homer_donuts_dooble from '../images/homer_donuts_dooble.png'
+import homer_tab_clic1 from '../images/homer_tab_clic1.png'
 
 class Parameters extends React.Component {
   constructor () {
@@ -61,17 +62,16 @@ class Parameters extends React.Component {
         <button onClick={this.handleOpenModal2}><IoMdCog/></button>
         
         <ReactModal 
-           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%'}}}
+           style={{content: { background: "linear-gradient(180deg, rgba(3,141,247,1) 0%, rgba(120,194,251,1) 50%, rgba(251,251,251,1) 100%)", width:'70%'}}}
            isOpen={this.state.showModal}
-           onRequestClose={this.handleCloseModal}
-        >
+           onRequestClose={this.handleCloseModal}>
           <button onClick={this.handleCloseModal} style={{float:"right"}}><IoMdClose/></button>
       
             <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "70px", height: "70px", marginBottom: "-15px"}} src={homer_tab_clic} alt='Donuts'/> = throw the ball</p>
-            <p className="alignItems"><img style={{ width: "60px", height: "60px", marginLeft:"10px"}} src={Donuts} alt='Donuts'/> = grow up Homer</p>
-            <p className="alignItems"><img style={{ width: "50px", height: "60px", marginLeft:"15px" }} src={Duff} alt='Duff'/> = mirror effect</p>
+            <p className="alignItems"><img style={{ width: "110px", marginBottom: "-15px"}} src={homer_tab_clic1} alt='Donuts'/> = throw the ball</p>
+            <p className="alignItems"><img style={{ width: "110px"}} src={homer_donuts} alt='Donuts'/><img style={{ width: "140px"}} src={homer_donuts_dooble} alt='Donuts'/></p>
+            <p className="alignItems"><img style={{ width: "40px", marginLeft:"15px" }} src={Duff} alt='Duff'/> = mirror effect</p>
             <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = go left</p>
             <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = go right</p>
             <p className="alignItems"><IoIosHeart style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconCoeur"/> = life</p>
