@@ -70,17 +70,17 @@ class Parameters extends React.Component {
       
             <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "110px", marginBottom: "-15px", marginLeft: "-21px"}} src={homer_tab_clic1} alt='Donuts'/> = throw the ball</p>
-            <p className="alignItems"><img style={{ width: "110px", marginLeft: "-23px"}} src={homer_donuts} alt='Donuts'/>→<img style={{ width: "140px"}} src={homer_donuts_dooble} alt='Donuts'/></p>
-            <p className="alignItems"><img style={{ width: "40px", marginLeft: "-23px"}} src={Duff} alt='Duff'/> = <img style={{ width: "140px"}} src={homer_tab_reverse} alt='Donuts'/></p>
-            <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"-25px", marginTop:"-15px" }} className="iconsFlèche"/> = go to left</p>
-            <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"-25px", marginTop:"-15px" }} className="iconsFlèche"/> = go to right</p>
-            <p className="alignItems"><img style={{ width: "30px", marginLeft: "-20px"}} src={heart} alt='heart'/> = life</p>
+            <p className="alignItems"><img src={homer_tab_clic1} alt='Donuts' className="homer_tab_clic1"/> = throw the ball</p>
+            <p className="alignItems"><img src={homer_donuts} alt='Donuts' className="homer_donuts"/>→<img src={homer_donuts_dooble} alt='Donuts' className="homer_donuts_dooble"/></p>
+            <p className="alignItems"><img src={Duff} alt='Duff' className="dufftutorial"/> = <img src={homer_tab_reverse} alt='Donuts' className="homer_tab_reverse"/></p>
+            <p className="alignItems"><TiArrowLeftThick className="iconsFlèche"/> = go to left</p>
+            <p className="alignItems"><TiArrowRightThick className="iconsFlèche"/> = go to right</p>
+            <p className="alignItems"><img src={heart} alt='heart' className="heartlife"/> = life</p>
           </div>
          </ReactModal>
 
         <ReactModal 
-           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%',height: '60%'}}}
+           style={{content: { background: "linear-gradient(180deg, rgba(3,141,247,1) 0%, rgba(120,194,251,1) 50%, rgba(251,251,251,1) 100%)", width:'70%'}}}
            isOpen={this.state.showModal2}
            onRequestClose={this.handleCloseModal2}
         >
