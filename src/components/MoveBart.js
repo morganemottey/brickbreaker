@@ -6,14 +6,16 @@ class Move extends Component {
     this.state = {}
   }
   render() {
-    const { left, bartGoRight } = this.props;
+    const { left, bartGoRight, endGame } = this.props;
     return (
 
       <>
         <div
           className="bart"
           style={{
-            left: `${left}px`, transform: bartGoRight ? '' : 'scaleX(-1) translate(50%, -50%)'
+            left: `${left}px`,
+            transform: bartGoRight ? '' : 'scaleX(-1) translate(50%, -50%)',
+            display : endGame.length===0 && 'none'
           }}
         />
       </>

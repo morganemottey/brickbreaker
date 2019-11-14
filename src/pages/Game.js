@@ -27,6 +27,8 @@ class Game extends Component {
     this.malusOn = false;
     this.speedX = 1.5;
     this.speedY = 1.5;
+    this.win = false;
+    this.loose = false;
     this.state = {
       bartDepart: 0,
       pointLeft: 20,
@@ -37,7 +39,7 @@ class Game extends Component {
       malus: [],
       timer: 0,
       isPlaying: false,
-      time : 61,
+      time: 61,
       color: 'white',
     }
     this.brick = new Audio(brickUrl);
@@ -102,7 +104,7 @@ class Game extends Component {
       brickWall: newBrickWall
     })
 
-    if (this.state.brickWall.length===0) {
+    if (this.state.brickWall.length === 0) {
       this.getBartFalling()
     }
 
@@ -130,7 +132,7 @@ class Game extends Component {
   }
 
   getMalus = () => {
-    if ((!this.malusOn) && (this.state.brickWall.length > 0)) {
+    if ((!this.malusOn) && (this.state.brickWall.length > 2)) {
       //On change l'état au bout d'un temps random puis on rappelle la fonction. 
       setTimeout(() => {
         this.setState({
@@ -152,20 +154,33 @@ class Game extends Component {
       && top <= 475
       && left + 10 > this.state.xLeft
       && left - 10 < this.state.xLeft + this.padWidth) {
-      console.log('Malus');
       this.malusOn = true;
       this.manageAudioDoh()
       return true
     }
   }
 
+  isBartCollide = (top, left) => {
+    if (top > 472
+      && top <= 475
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) {
+      this.win = true;
+      return true
+    }
+  }
+
+  isBartDontCollide = () => {
+    this.loose = true
+  }
+
   generateIfCollideX = (left, top) => {
     // 10 correspond à la moitié de la balle, 2.5 à la moitié du espace vertical, 5 à la moitié d'un espace horizontal
-    return (this.state.pointTop + 10 > top -2.5 && this.state.pointTop + 10 < top + 22.5 && this.state.pointLeft + 20 > left && this.state.pointLeft < left + 67)
+    return (this.state.pointTop + 10 > top - 2.5 && this.state.pointTop + 10 < top + 22.5 && this.state.pointLeft + 20 > left && this.state.pointLeft < left + 67)
   }
 
   generateIfCollideY = (left, top) => {
-    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 10 > left -5 && this.state.pointLeft + 10 < left + 67 + 5)
+    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 10 > left - 5 && this.state.pointLeft + 10 < left + 67 + 5)
   }
 
   checkIfCollideX = () => {
@@ -249,7 +264,7 @@ class Game extends Component {
       if (this.state.pointTop < 0 || this.checkIfCollidePadY()
       ) {
         this.goDown = !this.goDown
-      } else if (this.checkIfCollideY()){
+      } else if (this.checkIfCollideY()) {
         this.getBonus()
         this.deleteBricks()
         this.goDown = !this.goDown
@@ -281,11 +296,12 @@ class Game extends Component {
 
   getBrickWall = () => {
     const brick = [];
-    // for (let i = 0; i < 6; i++) {
-    //   for (let j = 0; j < 5; j++) {
-    //     brick.push({ top: i * 25, left: j * 77 })
-    //   }
-    brick.push({top : 0 , left : 0}) //For demo
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 5; j++) {
+        brick.push({ top: i * 25, left: j * 77 })
+      }
+    }
+    // brick.push({ top: 0, left: 0 })
     return brick;
   };
 
@@ -306,22 +322,22 @@ class Game extends Component {
 
   getRestart = () => {
     this.life = 3
-    this.setState({brickWall:this.getBrickWall(), bonus:[], time: 61})
+    this.setState({ brickWall: this.getBrickWall(), bonus: [], time: 61 })
   }
 
   countDown = () => {
-    if (this.props.counter === true){
-    if(this.state.time > 0){
-        this.setState({time: this.state.time - 1})
+    if (this.props.counter === true) {
+      if (this.state.time > 0) {
+        this.setState({ time: this.state.time - 1 })
+      }
+      if (this.state.time <= 9) {
+        this.setState({ color: "red" })
+      }
+      if (this.state.time === 0) {
+      }
+      setTimeout(this.countDown, 1000)
     }
-    if(this.state.time <= 9){
-        this.setState({color: "red"})
-    }
-    if(this.state.time === 0){
-    }
-    setTimeout(this.countDown, 1000)
   }
-}
 
   componentDidMount() {
     this.moovingBall()
@@ -340,8 +356,8 @@ class Game extends Component {
     const { pointLeft, pointTop, xLeft, bartDepart, brickWall } = this.state
     return (
       <div className="Game" style={{ transform: this.malusOn ? 'scale(0.85) scaleX(-1)' : 'scale(0.85)' }}>
-       {(this.life===0 || this.state.time === 0) && <Popuploose restart={this.getRestart}/>}
-       {/* {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>} */}
+        {(this.life === 0 || this.state.time === 0 || this.loose === true) && <Popuploose restart={this.getRestart} />}
+        {this.win && <Popupwin restart={this.getRestart} />}
         <div className="header">
           <div className="lifeBar">
             <div className={this.life >= 3 ? "life" : "noLife"}></div>
@@ -351,7 +367,7 @@ class Game extends Component {
           {this.props.counter === true && <Countdown time={this.state.time} color={this.state.color}></Countdown>}
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
-          <MoveBart left={bartDepart} bartGoRight={this.bartGoRight} />
+          <MoveBart left={bartDepart} bartGoRight={this.bartGoRight} endGame={brickWall} />
           {this.state.brickWall.map(item => {
             return (
               <Bricks
@@ -376,7 +392,10 @@ class Game extends Component {
               <Malus
                 left={item}
                 key={item}
-                isMalusCollide={this.isMalusCollide} />
+                isMalusCollide={this.isMalusCollide}
+                isBartCollide={this.isBartCollide}
+                isBartDontCollide={this.isBartDontCollide}
+                endGame={brickWall} />
             )
           }
           )}
