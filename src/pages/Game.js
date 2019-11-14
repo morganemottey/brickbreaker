@@ -26,15 +26,8 @@ class Game extends Component {
     this.malusOn = false;
     this.state = {
       bartDepart: 0,
-<<<<<<< HEAD
-      // malusTop : -35,
-      // malusLeft : this.bartDepart,
-      pointLeft: '',
-      pointTop: "",
-=======
       pointLeft: 20,
       pointTop: 400,
->>>>>>> dev
       brickWall: this.getBrickWall(),
       xLeft: 140,
       bonus: [],
@@ -278,13 +271,6 @@ class Game extends Component {
     this.countDown()
   }
 
-<<<<<<< HEAD
-  getRestart = () => {
-    this.life = 3
-    this.setState({brickWall:this.getBrickWall(), bonus:[]})
-  }
-
-=======
   componentWillUnmount(){
     this.isBonusCollide()
     this.getMalus()
@@ -293,20 +279,10 @@ class Game extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX() || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
   }
->>>>>>> dev
 
   render() {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
-<<<<<<< HEAD
-      <div className="Game">
-        {this.life===0 && <Popuploose restart={this.getRestart}/>}
-        {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
-        <div className="lifeBar">
-          <div className={this.life >= 3 ? "life" : "noLife"}></div>
-          <div className={this.life >= 2 ? "life" : "noLife"}></div>
-          <div className={this.life >= 1 ? "life" : "noLife"}></div>
-=======
       <div className="Game" style={{ transform: this.malusOn ? 'scale(0.85) scaleX(-1)' : 'scale(0.85)' }}>
        {(this.life===0 || this.state.time === 0) && <Popuploose restart={this.getRestart}/>}
        {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
@@ -317,7 +293,6 @@ class Game extends Component {
             <div className={this.life >= 1 ? "life" : "noLife"}></div>
           </div>
           {this.props.counter === true && <Countdown time={this.state.time} color={this.state.color}></Countdown>}
->>>>>>> dev
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />
