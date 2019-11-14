@@ -2,6 +2,7 @@ import React from 'react';
 import './Popupwin.css';
 import ReactModal from 'react-modal';
 import barthomer from '../images/barthomer.gif';
+import { Link } from 'react-router-dom';
 
 class Popupwin extends React.Component {
     constructor () {
@@ -23,6 +24,7 @@ class Popupwin extends React.Component {
     }
     
     render () {
+      const {restart} = this.props
       return (
         <div>
           {/* <button onClick={this.handleOpenModal}>Open Win</button> */}
@@ -36,8 +38,8 @@ class Popupwin extends React.Component {
                 <h1 className="looser1">You kicked my ass!</h1>
                 <img style={{width: "100%", height: "100%"}} src={barthomer} alt='#'/>
                     <div className="buttons">
-                        <button className="button">RESTART</button>
-                        <button className="button">HOME PAGE</button>
+                       <button className="button" onClick={restart}>RESTART</button>
+                       <button className="button"><Link to ="/">HOME PAGE</Link></button>
                     </div>
                 </div>
           </ReactModal>

@@ -7,36 +7,45 @@ import Bonus from '../components/Bonus';
 import MoveBart from '../components/MoveBart'
 import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
-import Malus from '../components/Malus'
+import brickUrl from '../musique/brick.mp3'
+import Malus from '../components/Malus';
+import dunutsUrl from '../musique/donuts.mp3'
 
 
 class Game extends Component {
   constructor(props) {
     super(props)
-    this.interval = 100;
+    this.interval = 5;
     this.goRight = true;
     this.goDown = false;
     this.isBallMoving = false;
     this.counterBall = 0;
-    this.life=3;
+    this.life = 3;
+    this.padWidth = 100;
+    this.malusOn = false;
     this.state = {
       bartDepart: 0,
-      malusTop : -35,
-      malusLeft : this.bartDepart,
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
-      xLeft: 0,
+      xLeft: 140,
       bonus: [],
-      getBonus: false,
+      malus: [],
+      timer: 0,
+      isPlaying: false,
+
     }
+    this.brick = new Audio(brickUrl);
+    this.dunuts = new Audio(dunutsUrl);
   }
 
   movePad = () => {
     document.addEventListener('touchstart', event => {
-      this.setState({
-        xLeft: Math.ceil(event.touches[0].pageX)
-      })
+      if ((event.touches[0].pageX - this.padWidth / 2 > 2) && (event.touches[0].pageX - this.padWidth / 2 < 373 - this.padWidth))
+        this.setState({
+          xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
+        })
+      // if - else if : Compteur pour déplacer la balle avant de l'envoyer
       if (!this.isBallMoving && this.counterBall === 1) {
         this.isBallMoving = true
       } else if (!this.isBallMoving) {
@@ -44,50 +53,99 @@ class Game extends Component {
       }
     }, false);
     document.addEventListener('touchmove', event => {
-      if ((this.state.xLeft > 0) && (this.state.xLeft < 315))
+      if ((this.state.xLeft > 2) && (this.state.xLeft < 373 - this.padWidth)) {
         this.setState({
-          xLeft: Math.ceil(event.touches[0].pageX)
+          xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
         })
+      }
+      if (this.state.xLeft <= 2) {
+        this.setState({
+          xLeft: 3
+        })
+      }
+      if (this.state.xLeft >= 373 - this.padWidth) {
+        this.setState({
+          xLeft: 372 - this.padWidth
+        })
+      }
     }, false);
 
   }
 
+  manageAudioBricks = () => {
+    this.brick.play()
+  }
+
+  manageAudioDunuts = () => {
+    this.dunuts.play()
+  }
+
   deleteBricks = () => {
+    const newBrickWall = this.state.brickWall
+      .filter(item => {
+        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 10 > item.left && this.state.pointLeft + 10 < item.left + 67)
+      })
+    if (newBrickWall.length < this.state.brickWall.length) {
+      this.manageAudioBricks()
+    }
     this.setState({
-      brickWall: this.state.brickWall
-        .filter(item => {
-          return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
-        })
-        .map(item => {
-          return item
-        })
+      brickWall: newBrickWall
     })
+
   }
 
   getBonus = () => {
-    if (Math.ceil(Math.random() * 5) === 5 && !this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
+    if ((Math.ceil(Math.random() * 6) === 6) && (this.padWidth === 100)) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
-          return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 10 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
-        })
-        .map(item => {
-          return item
+          return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
         })
       newDonutsTab.push(...this.state.bonus)
-      this.setState({ bonus: newDonutsTab, getBonus: true })
+      this.setState({ bonus: newDonutsTab })
     }
-    else if (this.state.getBonus && (this.checkIfCollideX() || this.checkIfCollideY())) {
-      this.setState({ getBonus: false })
+  }
+
+  isBonusCollide = (top, left) => {
+    if (top > 472
+      && top <= 475
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) {
+      this.padWidth = 150;
+      this.manageAudioDunuts()
+      return true
+    }
+  }
+
+  getMalus = () => {
+    if (!this.malusOn) {
+      //On change l'état au bout d'un temps random puis on rappelle la fonction. 
+      setTimeout(() => {
+        this.setState({
+          malus: [...this.state.malus, this.state.bartDepart]
+        })
+        this.getMalus();
+      }, Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000)
+    }
+  }
+
+  isMalusCollide = (top, left) => {
+    if (top > 472
+      && top <= 475
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) {
+      console.log('Malus');
+      this.malusOn = true;
+      return true
     }
   }
 
   generateIfCollideX = (left, top) => {
 
-    return (this.state.pointTop + 17 > top && this.state.pointTop < top + 7 && this.state.pointLeft + 20 > left && this.state.pointLeft < left + 67)
+    return (this.state.pointTop + 17 > top && this.state.pointTop < top + 17 && this.state.pointLeft + 10 > left && this.state.pointLeft + 10 < left + 67)
   }
 
   generateIfCollideY = (left, top) => {
-    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 10 && this.state.pointLeft + 17 > left && this.state.pointLeft < left + 64)
+    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 7 > left && this.state.pointLeft + 7 < left + 64)
   }
 
   checkIfCollideX = () => {
@@ -105,14 +163,14 @@ class Game extends Component {
   }
 
   checkIfCollidePadY = () => {
-    return (this.state.pointTop > 518
-      && this.state.pointTop <= 521
-      && this.state.pointLeft + 10 > this.state.xLeft - 30
-      && this.state.pointLeft - 10 < this.state.xLeft + 30)
+    return (this.state.pointTop > 472
+      && this.state.pointTop < 474
+      && this.state.pointLeft + 10 > this.state.xLeft
+      && this.state.pointLeft - 10 < this.state.xLeft + this.padWidth)
   }
 
   moovingBall = () => {
-    const speed = 100 * this.interval / 1000
+    const speed = 1.5
     if (this.isBallMoving) {
       if (this.goRight) {
         // eslint-disable-next-line 
@@ -145,9 +203,19 @@ class Game extends Component {
         this.goDown = false
         this.counterBall = 0
         this.goRight = true
-        this.life=this.life-1
+        this.life = this.life - 1
       }
-    } else this.setState({ pointTop: 521, pointLeft: this.state.xLeft + 20 })
+    } else this.setState({ pointTop: 472, pointLeft: this.state.xLeft - 10 + this.padWidth / 2 })
+
+    if (this.state.timer < 8) {
+      this.setState({ timer: this.state.timer + 1 })
+    } else {
+      this.setState({ timer: 0 })
+    }
+
+    this.padWidth === 150 && setTimeout(() => this.padWidth = 100, 6000)
+    this.malusOn && setTimeout(() => this.malusOn = false, 6000)
+
     setTimeout(this.moovingBall, this.interval)
   }
 
@@ -167,51 +235,44 @@ class Game extends Component {
     } else {
       this.setState({ bartDepart: this.state.bartDepart - 5 })
     }
-    if (this.state.bartDepart > 375 - 50)
+    if (this.state.bartDepart > 375 - 35)
       this.toRight = false;
 
-    else if (this.state.bartDepart < 0) {
+    else if (this.state.bartDepart < 35) {
       this.toRight = true
     }
     setTimeout(this.MouvBartX, 100)
   }
 
-  falling = () => {
-  this.setState({
-  malusTop : this.state.malusTop + 10,
-  malusLeft : this.state.malusLeft,
-  })
-  setTimeout(this.falling, 1000)
+  getRestart = () => {
+    this.life = 3
+    this.setState({ brickWall: this.getBrickWall(), bonus: [] })
   }
-  
-  
 
   componentDidMount() {
     this.moovingBall()
     this.movePad()
     this.MouvBartX()
-    this.falling()
-  
+    this.getMalus()
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX() || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
+  }
 
   render() {
     const { pointLeft, pointTop, xLeft, bartDepart, malusLeft, malusTop } = this.state
     return (
-      <div className="Game">
-        {this.life===0 && <Popuploose/>}
-        {this.state.brickWall.length===0 && <Popupwin/>}
+      <div className="Game" style={{ transform: this.malusOn ? 'scale(0.85) scaleX(-1)' : 'scale(0.85)' }}>
+        {this.life === 0 && <Popuploose restart={this.getRestart} />}
+        {this.state.brickWall.length === 0 && <Popupwin restart={this.getRestart} />}
         <div className="lifeBar">
-          <div className={this.life>=3 ? "life" : "noLife"}></div>
-          <div className={this.life>=2 ? "life" : "noLife"}></div>
-          <div className={this.life>=1 ? "life" : "noLife"}></div>
+          <div className={this.life >= 3 ? "life" : "noLife"}></div>
+          <div className={this.life >= 2 ? "life" : "noLife"}></div>
+          <div className={this.life >= 1 ? "life" : "noLife"}></div>
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
-          <MoveBart left={bartDepart}
-                    right={bartDepart} />
-          <Malus 
-          left = {malusLeft} 
-          top = {malusTop}/>
+          <MoveBart left={bartDepart} />
           {this.state.brickWall.map(item => {
             return (
               <Bricks
@@ -226,12 +287,23 @@ class Game extends Component {
               <Bonus
                 top={item.top}
                 left={item.left + 10}
-                key={item.top + '-' + item.left} />
+                key={item.top + '-' + item.left}
+                callback={this.isBonusCollide} />
+            )
+          }
+          )}
+          {this.state.malus.map(item => {
+            return (
+              <Malus
+                left={item}
+                key={item}
+                callback={this.isMalusCollide} />
             )
           }
           )}
           <Point left={pointLeft} top={pointTop} move={this.isBallMoving} />
-          <Pad left={xLeft} />
+          {/* <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div> */}
+          <Pad left={xLeft} width={this.padWidth} />
         </div>
       </div>
     );

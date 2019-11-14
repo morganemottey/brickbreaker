@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Bricks.css';
 
 class Bricks extends Component {
     constructor(props) {
@@ -10,13 +11,12 @@ class Bricks extends Component {
       const {left, top} = this.props
       const brickSize = {
          width:'67px',
-         height:'15px',
-         backgroundColor:'#993300',
+         height:'20px',
          position:'absolute',
       }  
       return (
         <div>
-          <div style={{...brickSize ,top:top, left:left}}></div>
+          <div className="brick" style={{...brickSize ,top:top, left:left}}></div>
         </div>
       );
     }
