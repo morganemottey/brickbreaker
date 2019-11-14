@@ -67,7 +67,7 @@ class Parameters extends React.Component {
         >
           <button onClick={this.handleCloseModal} style={{float:"right"}}><IoMdClose/></button>
       
-            <h1 class="title">Didacticiel</h1> 
+            <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
             <p className="alignItems"><img style={{ width: "70px", height: "70px", marginBottom: "-15px"}} src={homer_tab_clic} alt='Donuts'/> = Lancer la bille</p>
             <p className="alignItems"><img style={{ width: "60px", height: "60px", marginLeft:"10px"}} src={Donuts} alt='Donuts'/> = Agrandir Homer</p>
@@ -84,7 +84,7 @@ class Parameters extends React.Component {
            onRequestClose={this.handleCloseModal2}
         >
           <button onClick={this.handleCloseModal2} style={{ float: "right"}}><IoMdClose /></button>
-          <h1 class="title">Paramètres</h1>
+          <h1 class="title">Parameters</h1>
           <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Musique on/off</p>
         </ReactModal>
 
