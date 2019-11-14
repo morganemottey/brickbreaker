@@ -9,16 +9,14 @@ class Move extends Component {
     const { left, bartGoRight } = this.props;
     return (
 
-      <div style={{  }}>
-        <>
-          <div
-            className="bart"
-            style={{
-              left: `${left}px`,transform: bartGoRight ? '' : 'scaleX(-1) translate(50%, -50%)'
-            }}
-          />
-        </>
-      </div>
+      <>
+        <div
+          className="bart"
+          style={{
+            left: `${left}px`, transform: bartGoRight ? '' : 'scaleX(-1) translate(50%, -50%)'
+          }}
+        />
+      </>
 
     );
 
