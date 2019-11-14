@@ -12,13 +12,12 @@ class Move extends Component {
     return (
       <>
 
-        <img
+        <div
           className="bart"
           style={{
             left: `${left}px`,
           }}
-          src="https://i.ya-webdesign.com/images/skateboard-cartoon-png-4.png" alt='#'/>
-        
+         />
       </>
 
     );
