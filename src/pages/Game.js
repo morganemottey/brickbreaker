@@ -17,6 +17,7 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.interval = 5;
+    this.bartGoRight = true;
     this.goRight = true;
     this.goDown = false;
     this.isBallMoving = false;
@@ -279,16 +280,16 @@ class Game extends Component {
   };
 
   MouvBartX = () => {
-    if (this.toRight) {
+    if (this.bartGoRight) {
       this.setState({ bartDepart: this.state.bartDepart + 5 })
     } else {
       this.setState({ bartDepart: this.state.bartDepart - 5 })
     }
     if (this.state.bartDepart > 375 - 35)
-      this.toRight = false;
+      this.bartGoRight = false;
 
     else if (this.state.bartDepart < 35) {
-      this.toRight = true
+      this.bartGoRight = true
     }
     setTimeout(this.MouvBartX, 100)
   }
@@ -339,7 +340,7 @@ class Game extends Component {
           {this.props.counter === true && <Countdown time={this.state.time} color={this.state.color}></Countdown>}
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
-          <MoveBart left={bartDepart} />
+          <MoveBart left={bartDepart} bartGoRight={this.bartGoRight} />
           {this.state.brickWall.map(item => {
             return (
               <Bricks
