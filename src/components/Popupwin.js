@@ -28,11 +28,10 @@ class Popupwin extends React.Component {
             contentLabel="Minimal Modal Example"
           >
                 <div className="contenu">
-                <h1 className="looser1">You kicked my ass!</h1>
-                <img style={{width: "100%", height: "100%"}} src={barthomer} alt='#'/>
+                <h1 className="looser1">You kicked Bart's ass!</h1>
                     <div className="buttons">
-                       <button className="button" onClick={restart}>RESTART</button>
-                       <button className="button"><Link to ="/">HOME PAGE</Link></button>
+                       <button className="button_end" onClick={restart}>RESTART</button>
+                       <button className="button_end"><Link to ="/">HOME PAGE</Link></button>
                     </div>
                 </div>
           </ReactModal>
