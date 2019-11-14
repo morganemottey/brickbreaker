@@ -69,12 +69,12 @@ class Parameters extends React.Component {
       
             <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "70px", height: "70px", marginBottom: "-15px"}} src={homer_tab_clic} alt='Donuts'/> = Lancer la bille</p>
-            <p className="alignItems"><img style={{ width: "60px", height: "60px", marginLeft:"10px"}} src={Donuts} alt='Donuts'/> = Agrandir Homer</p>
-            <p className="alignItems"><img style={{ width: "50px", height: "60px", marginLeft:"15px" }} src={Duff} alt='Duff'/> = Effet miroir</p>
-            <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = Aller à gauche</p>
-            <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = Aller à droite</p>
-            <p className="alignItems"><IoIosHeart style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconCoeur"/> = Vie</p>
+            <p className="alignItems"><img style={{ width: "70px", height: "70px", marginBottom: "-15px"}} src={homer_tab_clic} alt='Donuts'/> = throw the ball</p>
+            <p className="alignItems"><img style={{ width: "60px", height: "60px", marginLeft:"10px"}} src={Donuts} alt='Donuts'/> = grow up Homer</p>
+            <p className="alignItems"><img style={{ width: "50px", height: "60px", marginLeft:"15px" }} src={Duff} alt='Duff'/> = mirror effect</p>
+            <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = go left</p>
+            <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = go right</p>
+            <p className="alignItems"><IoIosHeart style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconCoeur"/> = life</p>
           </div>
          </ReactModal>
 
@@ -85,7 +85,7 @@ class Parameters extends React.Component {
         >
           <button onClick={this.handleCloseModal2} style={{ float: "right"}}><IoMdClose /></button>
           <h1 class="title">Parameters</h1>
-          <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Musique on/off</p>
+          <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Music on/off</p>
         </ReactModal>
 
       </div>
