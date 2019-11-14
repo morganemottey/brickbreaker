@@ -287,12 +287,12 @@ class Game extends Component {
 
   getBrickWall = () => {
     const brick = [];
-    for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < 5; j++) {
-        brick.push({ top: i * 25, left: j * 77 })
-      }
-    }
-    // brick.push({ top: 0, left: 0 })
+    // for (let i = 0; i < 6; i++) {
+    //   for (let j = 0; j < 5; j++) {
+    //     brick.push({ top: i * 25, left: j * 77 })
+    //   }
+    // }
+    brick.push({ top: 0, left: 0 })
     return brick;
   };
 
@@ -313,6 +313,7 @@ class Game extends Component {
 
   getRestart = () => {
     this.life = 3
+    this.win = false
     this.setState({ brickWall: this.getBrickWall(), bonus: [], time: 61 })
   }
 
