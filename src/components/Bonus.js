@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import donuts from './images/Donuts.png'
+import donuts from '../images/Donuts.png'
 
 class Bonus extends Component {
     constructor(props){

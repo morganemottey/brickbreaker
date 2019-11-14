@@ -9,8 +9,8 @@ import Popuploose from '../components/Popuploose';
 import Popupwin from '../components/Popupwin';
 import Countdown from '../components/Countdown';
 import brickUrl from '../musique/brick.mp3'
+import Malus from '../components/Malus';
 import dunutsUrl from '../musique/donuts.mp3'
-// import Malus from '../components/Malus'
 
 
 class Game extends Component {
@@ -23,15 +23,15 @@ class Game extends Component {
     this.counterBall = 0;
     this.life = 3;
     this.padWidth = 100;
+    this.malusOn = false;
     this.state = {
       bartDepart: 0,
-      // malusTop : -35,
-      // malusLeft : this.bartDepart,
       pointLeft: 20,
       pointTop: 400,
       brickWall: this.getBrickWall(),
       xLeft: 140,
       bonus: [],
+      malus: [],
       timer: 0,
       isPlaying: false,
       time : 61,
@@ -62,7 +62,7 @@ class Game extends Component {
       }
       if (this.state.xLeft <= 2) {
         this.setState({
-          xLeft: 3 
+          xLeft: 3
         })
       }
       if (this.state.xLeft >= 373 - this.padWidth) {
@@ -76,19 +76,20 @@ class Game extends Component {
 
   manageAudioBricks = () => {
     this.brick.play()
-}
-manageAudioDunuts = () => {
-  this.dunuts.play()
-}
+  }
+
+  manageAudioDunuts = () => {
+    this.dunuts.play()
+  }
 
   deleteBricks = () => {
     const newBrickWall = this.state.brickWall
       .filter(item => {
-        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 10 > item.left && this.state.pointLeft +10 < item.left + 67)
+        return !(this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 10 > item.left && this.state.pointLeft + 10 < item.left + 67)
       })
-     if(newBrickWall.length < this.state.brickWall.length){
+    if (newBrickWall.length < this.state.brickWall.length) {
       this.manageAudioBricks()
-     }
+    }
     this.setState({
       brickWall: newBrickWall
     })
@@ -96,7 +97,7 @@ manageAudioDunuts = () => {
   }
 
   getBonus = () => {
-    if ((Math.ceil(Math.random() * 6) === 6) && (this.padWidth===100)) {
+    if ((Math.ceil(Math.random() * 6) === 6) && (this.padWidth === 100)) {
       const newDonutsTab = this.state.brickWall
         .filter(item => {
           return (this.state.pointTop + 20 > item.top && this.state.pointTop < item.top + 20 && this.state.pointLeft + 20 > item.left && this.state.pointLeft < item.left + 67)
@@ -111,9 +112,32 @@ manageAudioDunuts = () => {
       && top <= 475
       && left + 10 > this.state.xLeft
       && left - 10 < this.state.xLeft + this.padWidth) {
-        this.padWidth=150;
-        this.manageAudioDunuts()
-        return true
+      this.padWidth = 150;
+      this.manageAudioDunuts()
+      return true
+    }
+  }
+
+  getMalus = () => {
+    if (!this.malusOn) {
+      //On change l'état au bout d'un temps random puis on rappelle la fonction. 
+      setTimeout(() => {
+        this.setState({
+          malus: [...this.state.malus, this.state.bartDepart]
+        })
+        this.getMalus();
+      }, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000)
+    }
+  }
+
+  isMalusCollide = (top, left) => {
+    if (top > 472
+      && top <= 475
+      && left + 10 > this.state.xLeft
+      && left - 10 < this.state.xLeft + this.padWidth) {
+      console.log('Malus');
+      this.malusOn = true;
+      return true
     }
   }
 
@@ -122,7 +146,7 @@ manageAudioDunuts = () => {
   }
 
   generateIfCollideY = (left, top) => {
-    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 7 > left && this.state.pointLeft +7 < left + 64)
+    return (this.state.pointTop + 20 > top && this.state.pointTop < top + 20 && this.state.pointLeft + 7 > left && this.state.pointLeft + 7 < left + 64)
   }
 
   checkIfCollideX = () => {
@@ -190,7 +214,8 @@ manageAudioDunuts = () => {
       this.setState({ timer: 0 })
     }
 
-    this.padWidth === 150 && setTimeout(()=>this.padWidth=100, 6000)
+    this.padWidth === 150 && setTimeout(() => this.padWidth = 100, 6000)
+    this.malusOn && setTimeout(() => this.malusOn = false, 6000)
 
     setTimeout(this.moovingBall, this.interval)
   }
@@ -211,7 +236,7 @@ manageAudioDunuts = () => {
     } else {
       this.setState({ bartDepart: this.state.bartDepart - 5 })
     }
-    if (this.state.bartDepart > 375 -35)
+    if (this.state.bartDepart > 375 - 35)
       this.toRight = false;
 
     else if (this.state.bartDepart < 35) {
@@ -248,6 +273,7 @@ manageAudioDunuts = () => {
 
   componentWillUnmount(){
     this.isBonusCollide()
+    this.getMalus()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -257,7 +283,7 @@ manageAudioDunuts = () => {
   render() {
     const { pointLeft, pointTop, xLeft, bartDepart } = this.state
     return (
-      <div className="Game">
+      <div className="Game" style={{ transform: this.malusOn ? 'scale(0.85) scaleX(-1)' : 'scale(0.85)' }}>
        {(this.life===0 || this.state.time === 0) && <Popuploose restart={this.getRestart}/>}
        {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
         <div className="header">
@@ -270,9 +296,6 @@ manageAudioDunuts = () => {
         </div>
         <div style={{ position: 'relative', height: '600px', width: '375', top: '67px' }}>
           <MoveBart left={bartDepart} />
-          {/* <Malus 
-          left = {malusLeft} 
-          top = {malusTop}/> */}
           {this.state.brickWall.map(item => {
             return (
               <Bricks
@@ -289,6 +312,15 @@ manageAudioDunuts = () => {
                 left={item.left + 10}
                 key={item.top + '-' + item.left}
                 callback={this.isBonusCollide} />
+            )
+          }
+          )}
+          {this.state.malus.map(item => {
+            return (
+              <Malus
+                left={item}
+                key={item}
+                callback={this.isMalusCollide} />
             )
           }
           )}
