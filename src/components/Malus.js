@@ -21,7 +21,7 @@ class Malus extends Component {
     falling=()=>{
         if(this.state.top<587){
             this.setState({top: this.state.top+3})
-            this.props.callback(this.state.top,this.props.left)
+            this.props.isMalusCollide(this.state.top,this.props.left)
             && this.setState({display: 'none'})
         }else{
             this.setState({display: 'none'})

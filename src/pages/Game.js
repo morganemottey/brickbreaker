@@ -102,6 +102,10 @@ class Game extends Component {
       brickWall: newBrickWall
     })
 
+    if (this.state.brickWall.length===0) {
+      this.getBartFalling()
+    }
+
   }
 
   getBonus = () => {
@@ -126,7 +130,7 @@ class Game extends Component {
   }
 
   getMalus = () => {
-    if (!this.malusOn) {
+    if ((!this.malusOn) && (this.state.brickWall.length > 0)) {
       //On change l'état au bout d'un temps random puis on rappelle la fonction. 
       setTimeout(() => {
         this.setState({
@@ -135,6 +139,12 @@ class Game extends Component {
         this.getMalus();
       }, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000)
     }
+  }
+
+  getBartFalling = () => {
+    this.setState({
+      malus: [...this.state.malus, this.state.bartDepart]
+    })
   }
 
   isMalusCollide = (top, left) => {
@@ -325,12 +335,13 @@ class Game extends Component {
     return nextState.timer === 8 || this.state.pointLeft > 355 || this.state.pointLeft < 0 || this.checkIfCollideX() || this.state.pointTop < 0 || this.checkIfCollideY() || this.checkIfCollidePadY();
   }
 
+
   render() {
-    const { pointLeft, pointTop, xLeft, bartDepart } = this.state
+    const { pointLeft, pointTop, xLeft, bartDepart, brickWall } = this.state
     return (
       <div className="Game" style={{ transform: this.malusOn ? 'scale(0.85) scaleX(-1)' : 'scale(0.85)' }}>
        {(this.life===0 || this.state.time === 0) && <Popuploose restart={this.getRestart}/>}
-       {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>}
+       {/* {this.state.brickWall.length===0 && <Popupwin restart={this.getRestart}/>} */}
         <div className="header">
           <div className="lifeBar">
             <div className={this.life >= 3 ? "life" : "noLife"}></div>
@@ -365,11 +376,11 @@ class Game extends Component {
               <Malus
                 left={item}
                 key={item}
-                callback={this.isMalusCollide} />
+                isMalusCollide={this.isMalusCollide} />
             )
           }
           )}
-          <Point left={pointLeft} top={pointTop} move={this.isBallMoving} />
+          <Point left={pointLeft} top={pointTop} move={this.isBallMoving} brick={brickWall} />
           {/* <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div> */}
           <Pad left={xLeft} width={this.padWidth} />
         </div>

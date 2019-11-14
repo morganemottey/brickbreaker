@@ -17,10 +17,10 @@ class Point extends Component {
             boxShadow: '10px 10px 13px -2px rgba(31,31,31,0.35)',
             // transition: 'all linear 100ms'
         }
-        const {left, top, move} = this.props
+        const {left, top, move, brick} = this.props
 
         return(
-            <div style={{...style, left:left, top:top, transition: move ? 'all linear 25ms' : 'none' }}/>
+            <div style={{...style, left:left, top:top, transition: move ? 'all linear 25ms' : 'none' , display: brick.length===0 ? 'none' : 'block'}}/>
         )
     }
 
