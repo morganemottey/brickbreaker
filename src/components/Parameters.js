@@ -5,12 +5,12 @@ import { IoMdClose,
          IoMdCog,
          IoMdHelp,
          IoIosHeart,
-         IoIosVolumeHigh, 
-         IoIosArrowRoundBack, 
-         IoIosArrowRoundForward } from 'react-icons/io';
+         IoIosVolumeHigh } from 'react-icons/io';
+import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
 import totoUrl from '../musique/toto.mp3'
 import Duff from '../images/Duff.png'
 import Donuts from '../images/Donuts.png'
+import homer_tab_clic from '../images/homer_tab_clic.png'
 
 class Parameters extends React.Component {
   constructor () {
@@ -61,19 +61,20 @@ class Parameters extends React.Component {
         <button onClick={this.handleOpenModal2}><IoMdCog/></button>
         
         <ReactModal 
-           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%',height: '60%'}}}
+           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%'}}}
            isOpen={this.state.showModal}
            onRequestClose={this.handleCloseModal}
         >
           <button onClick={this.handleCloseModal} style={{float:"right"}}><IoMdClose/></button>
       
-            <h1 class="title">info jeux</h1> 
+            <h1 class="title">Didacticiel</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "40px", height: "40px" }} src={Donuts} alt='Donuts'/> = Agrendie la raquette</p>
-            <p className="alignItems"><img style={{ width: "35px", height: "50px" }} src={Duff} alt='Duff'/> = Malusse</p>
-            <p className="alignItems"><IoIosArrowRoundBack className="iconsFlèche"/> = Se déplacer a gauche</p>
-            <p className="alignItems"><IoIosArrowRoundForward className="iconsFlèche"/> = Se déplacer a droite</p>
-            <p className="alignItems"><IoIosHeart className="iconCoeur"/> = Vie</p>
+            <p className="alignItems"><img style={{ width: "70px", height: "70px", marginBottom: "-15px"}} src={homer_tab_clic} alt='Donuts'/> = Lancer la bille</p>
+            <p className="alignItems"><img style={{ width: "60px", height: "60px", marginLeft:"10px"}} src={Donuts} alt='Donuts'/> = Agrandir Homer</p>
+            <p className="alignItems"><img style={{ width: "50px", height: "60px", marginLeft:"15px" }} src={Duff} alt='Duff'/> = Effet miroir</p>
+            <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = Aller à gauche</p>
+            <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = Aller à droite</p>
+            <p className="alignItems"><IoIosHeart style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconCoeur"/> = Vie</p>
           </div>
          </ReactModal>
 
