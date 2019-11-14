@@ -225,8 +225,7 @@ class Game extends Component {
 
   moovingBall = () => {
     if (this.isBallMoving) {
-      // eslint-disable-next-line 
-      this.setState(this.goRight ? { pointLeft: this.state.pointLeft += this.speedX } : { pointLeft: this.state.pointLeft -= this.speedX })
+      this.setState(this.goRight ? { pointLeft: this.state.pointLeft + this.speedX } : { pointLeft: this.state.pointLeft - this.speedX })
       if (this.state.pointLeft > 355 || this.state.pointLeft < 0
       ) {
         this.goRight = !this.goRight
@@ -235,8 +234,7 @@ class Game extends Component {
         this.deleteBricks()
         this.goRight = !this.goRight
       }
-      // eslint-disable-next-line 
-      this.setState(this.goDown ? { pointTop: this.state.pointTop += this.speedY } : { pointTop: this.state.pointTop -= this.speedY })
+      this.setState(this.goDown ? { pointTop: this.state.pointTop + this.speedY } : { pointTop: this.state.pointTop - this.speedY })
       if (this.state.pointTop < 0 || this.checkIfCollidePadY()
       ) {
         this.goDown = !this.goDown
