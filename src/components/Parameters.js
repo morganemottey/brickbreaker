@@ -84,7 +84,7 @@ class Parameters extends React.Component {
            onRequestClose={this.handleCloseModal2}
         >
           <button onClick={this.handleCloseModal2} style={{ float: "right"}}><IoMdClose /></button>
-          <h1 class="title">parametre</h1>
+          <h1 class="title">Paramètres</h1>
           <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Musique on/off</p>
         </ReactModal>
 
