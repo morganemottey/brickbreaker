@@ -1,12 +1,18 @@
+body{
+background: linear-gradient(190deg, rgba(21,154,244,1) 0%, rgba(162,214,249,1) 50%, rgba(251,251,251,1) 100%) !important;
+}
+
 .titleHome {
-    font-family: 'Simpsonfont';
-    text-align: center;
-    color: rgb(0, 0, 0);
+font-family: 'Simpsonfont';
+text-align: center;
+color: rgb(0, 0, 0);
+background-color: bisque;
 }
 
 h1{
-    color: rgb(255, 223, 42);
-    font-size: 2rem;
+text-shadow: 1px 1px 2px yellow;
+color:black;
+font-size: 2rem;
 }
 
 img{
@@ -18,8 +24,8 @@ img{
     font-family: 'Simpsonfont';
     font-size: 1.5rem;
     background-color: black;
-    border: solid 1px;
+    border: 1px solid black;
     border-radius: 55px;
     box-shadow: 2px 5px 5px black;
-    padding: 4%;
+    padding: 4% 2% 4% 2%;
 }
