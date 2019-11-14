@@ -4,7 +4,6 @@ import ReactModal from 'react-modal';
 import { IoMdClose,
          IoMdCog,
          IoMdHelp,
-         IoIosHeart,
          IoIosVolumeHigh } from 'react-icons/io';
 import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
 import totoUrl from '../musique/toto.mp3'
@@ -12,6 +11,8 @@ import Duff from '../images/Duff.png'
 import homer_donuts from '../images/homer_donuts.png'
 import homer_donuts_dooble from '../images/homer_donuts_dooble.png'
 import homer_tab_clic1 from '../images/homer_tab_clic1.png'
+import homer_tab_reverse from '../images/homer_tab_reverse.png'
+import heart from '../images/heart.png'
 
 class Parameters extends React.Component {
   constructor () {
@@ -69,12 +70,12 @@ class Parameters extends React.Component {
       
             <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "110px", marginBottom: "-15px"}} src={homer_tab_clic1} alt='Donuts'/> = throw the ball</p>
-            <p className="alignItems"><img style={{ width: "110px"}} src={homer_donuts} alt='Donuts'/><img style={{ width: "140px"}} src={homer_donuts_dooble} alt='Donuts'/></p>
-            <p className="alignItems"><img style={{ width: "40px", marginLeft:"15px" }} src={Duff} alt='Duff'/> = mirror effect</p>
-            <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = go left</p>
-            <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconsFlèche"/> = go right</p>
-            <p className="alignItems"><IoIosHeart style={{ width: "50px", height: "60px", marginLeft:"15px" }} className="iconCoeur"/> = life</p>
+            <p className="alignItems"><img style={{ width: "110px", marginBottom: "-15px", marginLeft: "-21px"}} src={homer_tab_clic1} alt='Donuts'/> = throw the ball</p>
+            <p className="alignItems"><img style={{ width: "110px", marginLeft: "-23px"}} src={homer_donuts} alt='Donuts'/>→<img style={{ width: "140px"}} src={homer_donuts_dooble} alt='Donuts'/></p>
+            <p className="alignItems"><img style={{ width: "40px", marginLeft: "-23px"}} src={Duff} alt='Duff'/> = <img style={{ width: "140px"}} src={homer_tab_reverse} alt='Donuts'/></p>
+            <p className="alignItems"><TiArrowLeftThick style={{ width: "50px", height: "60px", marginLeft:"-25px", marginTop:"-15px" }} className="iconsFlèche"/> = go to left</p>
+            <p className="alignItems"><TiArrowRightThick style={{ width: "50px", height: "60px", marginLeft:"-25px", marginTop:"-15px" }} className="iconsFlèche"/> = go to right</p>
+            <p className="alignItems"><img style={{ width: "30px", marginLeft: "-20px"}} src={heart} alt='heart'/> = life</p>
           </div>
          </ReactModal>
 
