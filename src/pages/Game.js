@@ -11,7 +11,7 @@ import Countdown from '../components/Countdown';
 import brickUrl from '../musique/brick.mp3'
 import Malus from '../components/Malus';
 import dunutsUrl from '../musique/donuts.mp3'
-
+import dohUrl from '../musique/doh.mp3'
 
 class Game extends Component {
   constructor(props) {
@@ -39,6 +39,7 @@ class Game extends Component {
     }
     this.brick = new Audio(brickUrl);
     this.dunuts = new Audio(dunutsUrl);
+    this.doh = new Audio(dohUrl);
   }
 
   movePad = () => {
@@ -80,6 +81,10 @@ class Game extends Component {
 
   manageAudioDunuts = () => {
     this.dunuts.play()
+  }
+
+  manageAudioDoh = () => {
+    this.doh.play()
   }
 
   deleteBricks = () => {
@@ -137,6 +142,7 @@ class Game extends Component {
       && left - 10 < this.state.xLeft + this.padWidth) {
       console.log('Malus');
       this.malusOn = true;
+      this.manageAudioDoh()
       return true
     }
   }
@@ -269,10 +275,6 @@ class Game extends Component {
     this.movePad()
     this.MouvBartX()
     this.countDown()
-  }
-
-  componentWillUnmount(){
-    this.isBonusCollide()
     this.getMalus()
   }
 
