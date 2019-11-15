@@ -70,7 +70,7 @@ class Parameters extends React.Component {
       
             <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img src={homer_tab_clic1} alt='Donuts' className="homer_tab_clic1"/> = throw the ball</p>
+            <p className="alignItem"><img src={homer_tab_clic1} alt='Donuts' className="homer_tab_clic1"/> = throw the ball</p>
             <p className="alignItems"><img src={homer_donuts} alt='Donuts' className="homer_donuts"/>→<img src={homer_donuts_dooble} alt='Donuts' className="homer_donuts_dooble"/></p>
             <p className="alignItems"><img src={Duff} alt='Duff' className="dufftutorial"/> = <img src={homer_tab_reverse} alt='Donuts' className="homer_tab_reverse"/></p>
             <p className="alignItems"><TiArrowLeftThick className="iconsFlèche"/> = go to left</p>

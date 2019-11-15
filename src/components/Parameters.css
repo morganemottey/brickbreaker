@@ -7,7 +7,7 @@
 .iconsFlèche{
   width: 50px;
   height: 60px;
-  margin-left: -25px;
+  margin-left: 20px;
   margin-top: -15px;
 }
 
@@ -19,17 +19,17 @@
 .homer_tab_clic1{
   width: 110px;
   margin-bottom: -15px;
-  margin-left: -21px;
+  margin-left: -30px;
 }
 
 .dufftutorial{
   width: 40px;
-  margin-left: -23px;
+  margin-left: 30px;
 }
 
 .homer_donuts{
   width: 110px;
-  margin-left: -23px;
+  margin-left: -30px;
 }
 
 .homer_donuts_dooble{
@@ -43,7 +43,7 @@
 
 .heartlife{
   width: 30px;
-  margin-left: -20px;
+  margin-left: 60px;
 }
 
 .block{
@@ -54,6 +54,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 1.4rem;
 }
 .x{
   font-size: 1.5rem;
