@@ -23,5 +23,16 @@ img{
     border: 1px solid black;
     border-radius: 55px;
     box-shadow: 2px 5px 5px black;
-    padding: 4% 2% 4% 2%;
+    padding: 3% 4% 3% 4%;
+    margin: 10px;
+    margin-top: 130px;
+}
+
+.buttons_homepage{
+    margin: auto;
+}
+
+a{
+    color: yellow;
+    text-decoration: none;
 }
