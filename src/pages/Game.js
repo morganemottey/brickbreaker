@@ -12,6 +12,7 @@ import brickUrl from '../musique/brick.mp3'
 import Malus from '../components/Malus';
 import dunutsUrl from '../musique/donuts.mp3'
 import dohUrl from '../musique/doh.mp3'
+import FallingBart from '../components/FallingBart';
 
 class Game extends Component {
   constructor(props) {
@@ -104,10 +105,6 @@ class Game extends Component {
       brickWall: newBrickWall
     })
 
-    if (this.state.brickWall.length === 0) {
-      this.getBartFalling()
-    }
-
   }
 
   getBonus = () => {
@@ -141,12 +138,6 @@ class Game extends Component {
         this.getMalus();
       }, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000)
     }
-  }
-
-  getBartFalling = () => {
-    this.setState({
-      malus: [...this.state.malus, this.state.bartDepart]
-    })
   }
 
   isMalusCollide = (top, left) => {
@@ -296,12 +287,12 @@ class Game extends Component {
 
   getBrickWall = () => {
     const brick = [];
-    for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < 5; j++) {
-        brick.push({ top: i * 25, left: j * 77 })
-      }
-    }
-    // brick.push({ top: 0, left: 0 })
+    // for (let i = 0; i < 6; i++) {
+    //   for (let j = 0; j < 5; j++) {
+    //     brick.push({ top: i * 25, left: j * 77 })
+    //   }
+    // }
+    brick.push({ top: 0, left: 0 })
     return brick;
   };
 
@@ -322,6 +313,7 @@ class Game extends Component {
 
   getRestart = () => {
     this.life = 3
+    this.win = false
     this.setState({ brickWall: this.getBrickWall(), bonus: [], time: 61 })
   }
 
@@ -392,14 +384,18 @@ class Game extends Component {
               <Malus
                 left={item}
                 key={item}
-                isMalusCollide={this.isMalusCollide}
-                isBartCollide={this.isBartCollide}
-                isBartDontCollide={this.isBartDontCollide}
-                endGame={brickWall} />
+                isMalusCollide={this.isMalusCollide} />
             )
           }
           )}
-          <Point left={pointLeft} top={pointTop} move={this.isBallMoving} brick={brickWall} />
+          {this.state.brickWall.length === 0 &&
+            <FallingBart
+              left={this.state.bartDepart}
+              isBartCollide={this.isBartCollide}
+              isBartDontCollide={this.isBartDontCollide}
+            />
+          }
+          < Point left={pointLeft} top={pointTop} move={this.isBallMoving} brick={brickWall} />
           {/* <div style={{width: `${this.padWidth}px` , zIndex:'1000', position:'absolute', top:'492px', left:`${xLeft}px`, border: '2px red solid'}}></div> */}
           <Pad left={xLeft} width={this.padWidth} />
         </div>
