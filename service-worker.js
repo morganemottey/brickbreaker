@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/lyon-0919-react-p2-brick-breaker/precache-manifest.4d2f24fdc37901b61bb5db77b17fe44e.js"
+  "/lyon-0919-react-p2-brick-breaker/precache-manifest.8a694832e137411e7675bf7a14ab39c3.js"
 );
 
 self.addEventListener('message', (event) => {
