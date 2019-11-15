@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import duff from '../images/Duff.png'
+import bart from '../images/bart_fall.png'
 
-class Malus extends Component {
+class FallingBart extends Component {
     constructor(props) {
         super(props)
         this.style = {
@@ -19,13 +19,15 @@ class Malus extends Component {
     falling = () => {
         if (this.state.top < 587) {
             this.setState({ top: this.state.top + 3 })
-            this.props.isMalusCollide(this.state.top, this.props.left)
-                && this.setState({ display: 'none' })
-
+                if (this.props.isBartCollide(this.state.top, this.props.left)){
+                    this.setState({ display: 'none'})
+                } else {
+                    setTimeout(this.falling, 10)
+                }
         } else {
-            this.setState({ display: 'none' })
+            this.props.isBartDontCollide()
+            this.setState({ display: 'none'})
         }
-        setTimeout(this.falling, 10)
     }
 
     componentDidMount = () => {
@@ -38,12 +40,12 @@ class Malus extends Component {
         return (
             <>
                 <img style={{ ...this.style, top: top, left: left, display: display }}
-                    src={duff}
-                    alt='Duff'
+                    src={bart}
+                    alt='Bart'
                 />
             </>
         )
     }
 }
 
-export default Malus
+export default FallingBart

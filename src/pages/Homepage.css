@@ -1,10 +1,17 @@
-.homepage{
-    background: url('../images/background-home.png');
-    width: 100vh;
-    height: 100vh;
-    position: relative;
- }
- img{
+.titleHome {
+font-family: 'Simpsonfont';
+text-align: center;
+color: rgb(0, 0, 0);
+background-color: bisque;
+}
+
+h1{
+text-shadow: 1px 1px 2px yellow;
+color:black;
+font-size: 2rem;
+}
+
+img{
     width: 70%;
     height: 70%;
  }

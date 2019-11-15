@@ -7,19 +7,26 @@
     text-align: center;
 }
 
-.contenu, .looser {
+.looser1{
+    font-family: 'Simpsonfont';
+    font-size: 2.5rem;
     color: white;
+    text-shadow: 2px 2px 2px black;
+    margin-top: 120%;
 }
 
-.button{
+.button_end{
     font-family: 'Simpsonfont';
-    margin: 15% 5% 5% 5%;;
-    padding: 2.5%;
+    padding: 2.7%;
+    margin: 0px 15px 10px 5px;
     font-size: 1rem;
     background: white;
+    color: black;
     border-radius: 50px;
 }
 
-.looser1{
+.button_end a{
+    text-decoration: none;
     color: black;
 }
+
