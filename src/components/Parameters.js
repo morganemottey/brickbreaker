@@ -4,13 +4,15 @@ import ReactModal from 'react-modal';
 import { IoMdClose,
          IoMdCog,
          IoMdHelp,
-         IoIosHeart,
-         IoIosVolumeHigh, 
-         IoIosArrowRoundBack, 
-         IoIosArrowRoundForward } from 'react-icons/io';
+         IoIosVolumeHigh } from 'react-icons/io';
+import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
 import totoUrl from '../musique/toto.mp3'
 import Duff from '../images/Duff.png'
-import Donuts from '../images/Donuts.png'
+import homer_donuts from '../images/homer_donuts.png'
+import homer_donuts_dooble from '../images/homer_donuts_dooble.png'
+import homer_tab_clic1 from '../images/homer_tab_clic1.png'
+import homer_tab_reverse from '../images/homer_tab_reverse.png'
+import heart from '../images/heart.png'
 
 class Parameters extends React.Component {
   constructor () {
@@ -61,30 +63,30 @@ class Parameters extends React.Component {
         <button onClick={this.handleOpenModal2}><IoMdCog/></button>
         
         <ReactModal 
-           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%',height: '60%'}}}
+           style={{content: { background: "linear-gradient(180deg, rgba(3,141,247,1) 0%, rgba(120,194,251,1) 50%, rgba(251,251,251,1) 100%)", width:'70%'}}}
            isOpen={this.state.showModal}
-           onRequestClose={this.handleCloseModal}
-        >
+           onRequestClose={this.handleCloseModal}>
           <button onClick={this.handleCloseModal} style={{float:"right"}}><IoMdClose/></button>
       
-            <h1 class="title">info jeux</h1> 
+            <h1 class="title">Tutorial</h1> 
           <div style={{ margin: '30px'}}>
-            <p className="alignItems"><img style={{ width: "40px", height: "40px" }} src={Donuts} alt='Donuts'/> = Agrendie la raquette</p>
-            <p className="alignItems"><img style={{ width: "35px", height: "50px" }} src={Duff} alt='Duff'/> = Malusse</p>
-            <p className="alignItems"><IoIosArrowRoundBack className="iconsFlèche"/> = Se déplacer a gauche</p>
-            <p className="alignItems"><IoIosArrowRoundForward className="iconsFlèche"/> = Se déplacer a droite</p>
-            <p className="alignItems"><IoIosHeart className="iconCoeur"/> = Vie</p>
+            <p className="alignItem"><img src={homer_tab_clic1} alt='Donuts' className="homer_tab_clic1"/> = throw the ball</p>
+            <p className="alignItems"><img src={homer_donuts} alt='Donuts' className="homer_donuts"/>→<img src={homer_donuts_dooble} alt='Donuts' className="homer_donuts_dooble"/></p>
+            <p className="alignItems"><img src={Duff} alt='Duff' className="dufftutorial"/> = <img src={homer_tab_reverse} alt='Donuts' className="homer_tab_reverse"/></p>
+            <p className="alignItems"><TiArrowLeftThick className="iconsFlèche"/> = go to left</p>
+            <p className="alignItems"><TiArrowRightThick className="iconsFlèche"/> = go to right</p>
+            <p className="alignItems"><img src={heart} alt='heart' className="heartlife"/> = life</p>
           </div>
          </ReactModal>
 
         <ReactModal 
-           style={{content: { background: "linear-gradient(70deg, #FCFF56, #69FFF1)", width:'70%',height: '60%'}}}
+           style={{content: { background: "linear-gradient(180deg, rgba(3,141,247,1) 0%, rgba(120,194,251,1) 50%, rgba(251,251,251,1) 100%)", width:'70%'}}}
            isOpen={this.state.showModal2}
            onRequestClose={this.handleCloseModal2}
         >
           <button onClick={this.handleCloseModal2} style={{ float: "right"}}><IoMdClose /></button>
-          <h1 class="title">parametre</h1>
-          <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Musique on/off</p>
+          <h1 class="title">Parameters</h1>
+          <p class="x"><button onClick={this.manageAudio}><IoIosVolumeHigh className="iconSong"/></button>Music on/off</p>
         </ReactModal>
 
       </div>

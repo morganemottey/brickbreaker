@@ -12,8 +12,8 @@ class Homepage extends Component {
                 <h1>Homer's Nervous Brickdown</h1>
                 <img src={require('../images/bart_fall.png')} alt="bart" />
                 <div>
-                <button className="linktogame"> <Link to ="/Game">Play</Link></button>
-                <button className="linktogame" onClick={this.props.onClick}> <Link to ="/Game">Time trial</Link></button>
+                    <button className="linktogame"> <Link to ="/Game">Play</Link></button>
+                    <button className="linktogame" onClick={this.props.onClick}> <Link to ="/Game">Time trial</Link></button>
                 </div>
             </div>
         );
