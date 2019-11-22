@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import './App.css';
 import Homepage from './pages/Homepage';
 import Game from './pages/Game';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
@@ -22,7 +22,7 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-      <BrowserRouter> 
+      <HashRouter> 
        <Fragment>
          <Route path="/" exact render ={(props) => <Homepage {...props} onClick={this.clickCounter} />}
          />
@@ -30,7 +30,7 @@ class App extends Component {
          path="/Game" exact render ={(props) => <Game {...props} counter={this.state.counter} />}
          />
        </Fragment> 
-      </BrowserRouter>  
+      </HashRouter>  
    </div>
     )
   }
