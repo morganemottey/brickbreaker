@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/lyon-0919-react-p2-brick-breaker/static/css/main.2de0c29f.chunk.css",
-    "main.js": "/lyon-0919-react-p2-brick-breaker/static/js/main.5f3fa45d.chunk.js",
-    "main.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/main.5f3fa45d.chunk.js.map",
+    "main.js": "/lyon-0919-react-p2-brick-breaker/static/js/main.f8cd9174.chunk.js",
+    "main.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/main.f8cd9174.chunk.js.map",
     "runtime-main.js": "/lyon-0919-react-p2-brick-breaker/static/js/runtime-main.a79b24b3.js",
     "runtime-main.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/runtime-main.a79b24b3.js.map",
     "static/js/2.a3245cb9.chunk.js": "/lyon-0919-react-p2-brick-breaker/static/js/2.a3245cb9.chunk.js",
     "static/js/2.a3245cb9.chunk.js.map": "/lyon-0919-react-p2-brick-breaker/static/js/2.a3245cb9.chunk.js.map",
     "index.html": "/lyon-0919-react-p2-brick-breaker/index.html",
-    "precache-manifest.d8ea64e6d6a9c655cc843be8ee393f1a.js": "/lyon-0919-react-p2-brick-breaker/precache-manifest.d8ea64e6d6a9c655cc843be8ee393f1a.js",
+    "precache-manifest.9cb32b7a2cb11fc77d017f13b7f8bad6.js": "/lyon-0919-react-p2-brick-breaker/precache-manifest.9cb32b7a2cb11fc77d017f13b7f8bad6.js",
     "service-worker.js": "/lyon-0919-react-p2-brick-breaker/service-worker.js",
     "static/css/main.2de0c29f.chunk.css.map": "/lyon-0919-react-p2-brick-breaker/static/css/main.2de0c29f.chunk.css.map",
     "static/media/Donuts.png": "/lyon-0919-react-p2-brick-breaker/static/media/Donuts.700a23c4.png",
@@ -33,6 +33,6 @@
     "static/js/runtime-main.a79b24b3.js",
     "static/js/2.a3245cb9.chunk.js",
     "static/css/main.2de0c29f.chunk.css",
-    "static/js/main.5f3fa45d.chunk.js"
+    "static/js/main.f8cd9174.chunk.js"
   ]
 }

@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "62cd810b1dc079379a68b11739b965d6",
+    "revision": "81bf6a950b5380d33d5fed59b4a06484",
     "url": "/lyon-0919-react-p2-brick-breaker/index.html"
   },
   {
-    "revision": "6b22144e7bb553590c6e",
+    "revision": "15dd845c2483b884eba2",
     "url": "/lyon-0919-react-p2-brick-breaker/static/css/main.2de0c29f.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lyon-0919-react-p2-brick-breaker/static/js/2.a3245cb9.chunk.js"
   },
   {
-    "revision": "6b22144e7bb553590c6e",
-    "url": "/lyon-0919-react-p2-brick-breaker/static/js/main.5f3fa45d.chunk.js"
+    "revision": "15dd845c2483b884eba2",
+    "url": "/lyon-0919-react-p2-brick-breaker/static/js/main.f8cd9174.chunk.js"
   },
   {
     "revision": "eeab94b7a6e69a434546",
