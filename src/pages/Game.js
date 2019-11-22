@@ -48,23 +48,30 @@ class Game extends Component {
     this.doh = new Audio(dohUrl);
   }
 
+
   movePad = () => {
-    document.addEventListener('touchstart', event => {
-      if ((event.touches[0].pageX - this.padWidth / 2 > 2) && (event.touches[0].pageX - this.padWidth / 2 < 373 - this.padWidth))
-        this.setState({
-          xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
-        })
-      // if - else if : Compteur pour déplacer la balle avant de l'envoyer
+    document.addEventListener('touchstart', event => firstClick(event.touches[0]), false);
+    document.addEventListener('touchmove', event => toucheMove(event.touches[0]), false);
+    document.addEventListener('click', event => firstClick(event), false);
+    document.addEventListener('mousemove', event => toucheMove(event), false);
+
+
+    const firstClick =(event) => {
+      if ((event.pageX - this.padWidth / 2 > 2) && (event.pageX - this.padWidth / 2 < 373 - this.padWidth))
+      this.setState({
+        xLeft: Math.ceil(event.pageX - this.padWidth / 2)
+      })
       if (!this.isBallMoving && this.counterBall === 1) {
-        this.isBallMoving = true
+      this.isBallMoving = true
       } else if (!this.isBallMoving) {
-        this.counterBall++
-      }
-    }, false);
-    document.addEventListener('touchmove', event => {
+      this.counterBall++
+    }
+  }
+
+    const toucheMove =(event) => {
       if ((this.state.xLeft > 2) && (this.state.xLeft < 373 - this.padWidth)) {
         this.setState({
-          xLeft: Math.ceil(event.touches[0].pageX - this.padWidth / 2)
+          xLeft: Math.ceil(event.pageX - this.padWidth / 2)
         })
       }
       if (this.state.xLeft <= 2) {
@@ -77,9 +84,9 @@ class Game extends Component {
           xLeft: 372 - this.padWidth
         })
       }
-    }, false);
+    }
+  }    
 
-  }
 
   manageAudioBricks = () => {
     this.brick.play()
