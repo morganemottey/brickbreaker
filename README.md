@@ -1,5 +1,5 @@
 
-![scan_brick](https://user-images.githubusercontent.com/50181632/69550674-b76ddf00-0f9b-11ea-9095-d7febfabbad5.png)
+![scan_brick](https://user-images.githubusercontent.com/50181632/69550830-0156c500-0f9c-11ea-80a3-b713e5a630f0.png)
 
 
 | HTML / CSS / JavaScript Vanilla /ReactJS
