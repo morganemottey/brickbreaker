@@ -1,3 +1,9 @@
-| HTML / CSS3 / REACTJS 
 
-P
+
+
+
+
+
+| HTML / CSS / JavaScript Vanilla 
+
+@ Wild Code School Lyon 
